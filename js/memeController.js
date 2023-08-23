@@ -2,6 +2,8 @@
 
 let gElCanvas
 let gCtx
+let gX = 250
+let gY = 100
 
 function onInit() {
     gElCanvas = document.querySelector('canvas')
@@ -24,34 +26,58 @@ function addTouchListeners() {
 }
 
 function renderMeme() {
-    const imgs = getImgs()
-    const currImgUrl = getCurrImgURL()
     const memes = getMeme()
-    const currMeme = memes.lines[0]
-    drawImg(currImgUrl)
+    const currImgId = +memes.selectedImgId
+    drawImg(currImgId)
+    gY = 100
     setTimeout(() => {
-        drawText(currMeme.txt, currMeme.size, currMeme.color)
-    }, 100);
+        memes.lines.forEach((line) => {
+            drawText(line)
+        })
+    }, 0.000001)
 }
 
-function drawImg(img) {
+function drawImg(imgId) {
+    const currImg = getImgById(imgId)
     const elImg = new Image()
-    elImg.src = img
+    elImg.src = currImg.url
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
     }
 }
 
-function drawText(txt, size, color, x = 250, y = 250) {
+function drawText(line) {
     gCtx.lineWidth = 1
-    gCtx.strokeStyle = color
-    gCtx.fillStyle = color
-    gCtx.font = `30px Arial`
+    gCtx.strokeStyle = line.color
+    gCtx.fillStyle = line.color
+    gCtx.font = `${line.size}px Arial`
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
 
-    gCtx.fillText(txt, x, y)
-    gCtx.strokeText(txt, x, y)
+    gCtx.fillText(line.txt, gX, gY)
+    gCtx.strokeText(line.txt, gX, gY)
+    gY += 50
+}
+
+function colorPicker(color) {
+    setLineColor(color)
+    renderMeme()
+}
+
+function fontIncreaseLine() {
+    increaseFontSize()
+    renderMeme()
+}
+
+function fontDecreaseLine() {
+    decreaseFontSize()
+    renderMeme()
+}
+
+function downloadCanvas(elLink) {
+    const dataUrl = gElCanvas.toDataURL()
+    elLink.href = dataUrl
+    elLink.download = 'my-meme'
 }
 
 function onTxtChange(txt) {
@@ -59,7 +85,18 @@ function onTxtChange(txt) {
     renderMeme()
 }
 
-function onImgSelect(img) {
-    setImg(img)
+function onImgSelect(elBtn) {
+    const imgId = elBtn.dataset.imageId
+    setImg(imgId)
+
     renderMeme()
+}
+
+function onAddLine() {
+    addLine()
+    renderMeme()
+}
+
+function onSwitchLine() {
+    switchLine()
 }

@@ -24,9 +24,17 @@
     <section class="editor-container flex">
         <canvas width="500" height="500">
         </canvas>
-        <label>
-            <input type="text" placeholder="enter txt here" oninput="onTxtChange(this.value)">
-        </label>
+        <div class="tools">
+            <label>
+                <input type="text" placeholder="enter txt here" oninput="onTxtChange(this.value)">
+            </label>
+            <input type="color" onchange="colorPicker(this.value)">
+            <button class="add-line" onclick="onSwitchLine()">Switch Line</button>
+            <button class="add-line" onclick="onAddLine()">Add Line</button>
+            <button class="font-increase-btn" onclick="fontIncreaseLine()">+</button>
+            <button class="font-decrease-btn" onclick="fontDecreaseLine()">-</button>
+            <a href="#" onclick="downloadCanvas(this)" download="file-name">Download</a>
+        </div>
     </section>
 
     <section class="gallery-container"></section>
