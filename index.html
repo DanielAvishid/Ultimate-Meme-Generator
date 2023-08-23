@@ -18,19 +18,22 @@
                     <li><a href="#">About</a></li>
                 </ul>
             </div>
-
         </nav>
     </header>
 
-
-    <section class="main-container">
+    <section class="editor-container flex">
         <canvas width="500" height="500">
         </canvas>
-        <span>HI</span>
+        <label>
+            <input type="text" placeholder="enter txt here" oninput="onTxtChange(this.value)">
+        </label>
     </section>
+
+    <section class="gallery-container"></section>
 
     <script src="js/MemeService.js"></script>
     <script src="js/memeController.js"></script>
+    <script src="js/galleryController.js"></script>
 </body>
 
 </html>

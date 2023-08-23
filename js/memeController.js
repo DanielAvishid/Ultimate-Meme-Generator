@@ -24,17 +24,19 @@ function addTouchListeners() {
 }
 
 function renderMeme() {
+    const imgs = getImgs()
+    const currImgUrl = getCurrImgURL()
     const memes = getMeme()
     const currMeme = memes.lines[0]
-    drawImg()
+    drawImg(currImgUrl)
     setTimeout(() => {
         drawText(currMeme.txt, currMeme.size, currMeme.color)
     }, 100);
 }
 
-function drawImg() {
+function drawImg(img) {
     const elImg = new Image()
-    elImg.src = 'images/1.jpg'
+    elImg.src = img
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
     }
@@ -50,4 +52,14 @@ function drawText(txt, size, color, x = 250, y = 250) {
 
     gCtx.fillText(txt, x, y)
     gCtx.strokeText(txt, x, y)
+}
+
+function onTxtChange(txt) {
+    setLineTxt(txt)
+    renderMeme()
+}
+
+function onImgSelect(img) {
+    setImg(img)
+    renderMeme()
 }
