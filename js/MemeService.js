@@ -10,12 +10,14 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
+            pos: { x: 250, y: 100 },
             txt: 'I sometimes eat Falafel',
             size: 20,
             color: 'red',
             isDrag: false
         },
         {
+            pos: { x: 250, y: 200 },
             txt: 'Hey mister Police Man',
             size: 30,
             color: 'pink',
@@ -30,6 +32,30 @@ function setLineTxt(txt) {
     const currLineIdx = gMeme.selectedLineIdx
     const currLine = gMeme.lines[currLineIdx]
     currLine.txt = txt
+}
+
+function setLineDrag(isDrag) {
+    const currLineIdx = gMeme.selectedLineIdx
+    const currLine = gMeme.lines[currLineIdx]
+    currLine.isDrag = isDrag
+}
+
+function moveSelectedLine(dx, dy) {
+    const currLineIdx = gMeme.selectedLineIdx
+    const currLine = gMeme.lines[currLineIdx]
+    currLine.pos.x += dx
+    currLine.pos.y += dy
+}
+
+function getSelectedLine() {
+    const currLineIdx = gMeme.selectedLineIdx
+    return gMeme.lines[currLineIdx]
+}
+
+function isTextClicked(clickedPos) {
+    const currLineIdx = gMeme.selectedLineIdx
+    const currLine = gMeme.lines[currLineIdx]
+    return clickedPos.x <= gCtx.measureText(currLine.txt)
 }
 
 function addLine() {
@@ -50,15 +76,15 @@ function getImgById(imgId) {
     return gImgs.find(img => imgId === +img.id)
 }
 
-function getLineByIdx(lineIdx) {
-    const currLine = gMeme.lines[lineIdx]
-    return {
-        txt: currLine.txt,
-        color: currLine.color,
-        size: currLine.size,
-        isDrag: false
-    }
-}
+// function getLineByIdx(lineIdx) {
+//     const currLine = gMeme.lines[lineIdx]
+//     return {
+//         txt: currLine.txt,
+//         color: currLine.color,
+//         size: currLine.size,
+//         isDrag: false
+//     }
+// }
 
 function setLineColor(color) {
     const currLineIdx = gMeme.selectedLineIdx

@@ -2,37 +2,68 @@
 
 let gElCanvas
 let gCtx
-let gX = 250
-let gY = 100
+let gStartPos
+
+let gX1 = 250
+let gY2 = 100
+const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
-    // addMouseListeners()
-    // addTouchListeners()
+    addMouseListeners()
+    addTouchListeners()
     renderMeme()
 }
 
 function addMouseListeners() {
-    // gElCanvas.addEventListener('mousedown', onDown)
-    // gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mousemove', onMove)
     // gElCanvas.addEventListener('mouseup', onUp)
 }
 
 function addTouchListeners() {
-    // gElCanvas.addEventListener('touchstart', onDown)
-    // gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchmove', onMove)
     // gElCanvas.addEventListener('touchend', onUp)
+}
+
+function onDown(ev) {
+    const pos = getEvPos(ev)
+
+    if (!isTextClicked(pos)) return
+
+    setLineDrag(true)
+    gStartPos = pos
+}
+
+function onMove(ev) {
+    const { isDrag } = getSelectedLine()
+    if (!isDrag) return
+
+    const pos = getEvPos(ev)
+
+    const dx = pos.x - gStartPos.x
+    const dy = pos.y - gStartPos.y
+    moveSelectedLine(dx, dy)
+
+    gStartPos = pos
+
+    renderMeme()
+}
+
+function renderText(line) {
+    const { pos, txt, size, color } = line
+    drawText(pos.x, pos.y, txt, size, color)
 }
 
 function renderMeme() {
     const memes = getMeme()
     const currImgId = +memes.selectedImgId
     drawImg(currImgId)
-    gY = 100
     setTimeout(() => {
-        memes.lines.forEach((line) => {
-            drawText(line)
+        memes.lines.forEach(line => {
+            renderText(line)
         })
     }, 0.000001)
 }
@@ -46,17 +77,23 @@ function drawImg(imgId) {
     }
 }
 
-function drawText(line) {
+function drawRect(x, y) {
+    gCtx.strokeStyle = 'brown'
+    gCtx.strokeRect(x, y, 120, 120)
+    gCtx.fillStyle = 'orange'
+    gCtx.fillRect(x, y, 120, 120)
+}
+
+function drawText(x, y, txt, size, color) {
     gCtx.lineWidth = 1
-    gCtx.strokeStyle = line.color
-    gCtx.fillStyle = line.color
-    gCtx.font = `${line.size}px Arial`
+    gCtx.strokeStyle = color
+    gCtx.fillStyle = color
+    gCtx.font = `${size}px Arial`
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
 
-    gCtx.fillText(line.txt, gX, gY)
-    gCtx.strokeText(line.txt, gX, gY)
-    gY += 50
+    gCtx.fillText(txt, x, y)
+    gCtx.strokeText(txt, x, y)
 }
 
 function colorPicker(color) {
@@ -99,4 +136,21 @@ function onAddLine() {
 
 function onSwitchLine() {
     switchLine()
+}
+
+function getEvPos(ev) {
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+    if (TOUCH_EVS.includes(ev.type)) {
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+        }
+    }
+    console.log(pos)
+    return pos
 }
