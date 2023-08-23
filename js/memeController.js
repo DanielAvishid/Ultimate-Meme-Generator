@@ -57,20 +57,43 @@ function onUp(ev) {
 
 }
 
+function drawRectOnSelected(x, y) {
+    gCtx.beginPath();
+    gCtx.lineWidth = "4";
+    gCtx.strokeStyle = "black";
+    gCtx.rect(100, 300, gCtx.measureText(selected.txt), selected.size);
+    gCtx.stroke();
+}
+
 function renderMeme() {
     const memes = getMeme()
     const currImg = getImgById(+memes.selectedImgId)
     drawImg(currImg)
-    setTimeout(() => {
-        memes.lines.forEach(line => {
-            renderText(line)
-        })
-    }, 0.00000000000001)
+
+    drawAllLines()
 }
 
-function renderText(line) {
-    const { pos, txt, size, color } = line
-    drawText(pos.x, pos.y, txt, size, color)
+function drawAllLines() {
+    const lines = getLines()
+    setTimeout(() => {
+        lines.forEach(line => {
+            drawText(line.pos.x, line.pos.y, line.txt, line.size, line.color)
+            drawRectOnSelected(line.pos.x, line.pos.y)
+        })
+    }, 0.00001);
+}
+
+function drawText(x, y, txt, size, color) {
+    console.log(txt)
+    gCtx.lineWidth = 1
+    gCtx.strokeStyle = color
+    gCtx.fillStyle = color
+    gCtx.font = `${size}px Arial`
+    gCtx.textAlign = 'center'
+    gCtx.textBaseline = 'middle'
+
+    gCtx.fillText(txt, x, y)
+    gCtx.strokeText(txt, x, y)
 }
 
 function drawImg(img) {

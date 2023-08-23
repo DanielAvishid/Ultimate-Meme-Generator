@@ -48,7 +48,7 @@ function moveSelectedLine(dx, dy) {
 
 function isTextClicked(clickedPos) {
     const selectedLine = getSelectedLine()
-    return clickedPos.x <= gCtx.measureText(selectedLine.txt) && clickedPos.y <= selectedLine.size
+    // return clickedPos.x <= gCtx.measureText(selectedLine.txt) && clickedPos.y <= selectedLine.size
 }
 
 function addLine() {
@@ -102,6 +102,10 @@ function setSelectedLine(lineIdx) {
 
 function setSelectedImg(imgId) {
     gMeme.selectedImgId = imgId
+}
+
+function getLines() {
+    return gMeme.lines
 }
 
 function getSelectedLine() {
