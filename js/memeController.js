@@ -78,19 +78,18 @@ function drawAllLines() {
     setTimeout(() => {
         lines.forEach(line => {
             drawText(line.pos.x, line.pos.y, line.txt, line.size, line.color)
-            drawRectOnSelected(line.pos.x, line.pos.y)
+            drawRect(line.pos.x, line.pos.y, line.txt, line.size)
         })
     }, 0.00001);
 }
 
 function drawText(x, y, txt, size, color) {
-    console.log(txt)
     gCtx.lineWidth = 1
     gCtx.strokeStyle = color
     gCtx.fillStyle = color
     gCtx.font = `${size}px Arial`
-    gCtx.textAlign = 'center'
-    gCtx.textBaseline = 'middle'
+    gCtx.textAlign = 'left'
+    gCtx.textBaseline = 'left'
 
     gCtx.fillText(txt, x, y)
     gCtx.strokeText(txt, x, y)
@@ -104,11 +103,11 @@ function drawImg(img) {
     }
 }
 
-function drawRect(x, y) {
-    gCtx.strokeStyle = 'brown'
-    gCtx.strokeRect(x, y, 120, 120)
-    gCtx.fillStyle = 'orange'
-    gCtx.fillRect(x, y, 120, 120)
+function drawRect(x, y, txt, size) {
+    const width = gCtx.measureText(txt)
+    gCtx.lineWidth = 3
+    gCtx.strokeStyle = 'black'
+    gCtx.strokeRect(x - width.width / 2 - 10, y - size / 2 - 10, width.width + 20, size + 20)
 }
 
 function drawText(x, y, txt, size, color) {
