@@ -30,26 +30,42 @@ function addTouchListeners() {
 
 function onDown(ev) {
     const pos = getEvPos(ev)
+    console.log(pos)
 
-    if (!isTextClicked(pos)) return
+    // if (!isTextClicked(pos)) return
 
-    setLineDrag(true)
-    gStartPos = pos
+    // setLineDrag(true)
+    // gStartPos = pos
 }
 
 function onMove(ev) {
-    const { isDrag } = getSelectedLine()
-    if (!isDrag) return
+    // const { isDrag } = getSelectedLine()
+    // if (!isDrag) return
 
-    const pos = getEvPos(ev)
+    // const pos = getEvPos(ev)
 
-    const dx = pos.x - gStartPos.x
-    const dy = pos.y - gStartPos.y
-    moveSelectedLine(dx, dy)
+    // const dx = pos.x - gStartPos.x
+    // const dy = pos.y - gStartPos.y
+    // moveSelectedLine(dx, dy)
 
-    gStartPos = pos
+    // gStartPos = pos
 
-    renderMeme()
+    // renderMeme()
+}
+
+function onUp(ev) {
+
+}
+
+function renderMeme() {
+    const memes = getMeme()
+    const currImg = getImgById(+memes.selectedImgId)
+    drawImg(currImg)
+    setTimeout(() => {
+        memes.lines.forEach(line => {
+            renderText(line)
+        })
+    }, 0.00000000000001)
 }
 
 function renderText(line) {
@@ -57,21 +73,9 @@ function renderText(line) {
     drawText(pos.x, pos.y, txt, size, color)
 }
 
-function renderMeme() {
-    const memes = getMeme()
-    const currImgId = +memes.selectedImgId
-    drawImg(currImgId)
-    setTimeout(() => {
-        memes.lines.forEach(line => {
-            renderText(line)
-        })
-    }, 0.000001)
-}
-
-function drawImg(imgId) {
-    const currImg = getImgById(imgId)
+function drawImg(img) {
     const elImg = new Image()
-    elImg.src = currImg.url
+    elImg.src = img.url
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
     }
@@ -124,8 +128,7 @@ function onTxtChange(txt) {
 
 function onImgSelect(elBtn) {
     const imgId = elBtn.dataset.imageId
-    setImg(imgId)
-
+    setSelectedImg(imgId)
     renderMeme()
 }
 
@@ -151,6 +154,5 @@ function getEvPos(ev) {
             y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
         }
     }
-    console.log(pos)
     return pos
 }
