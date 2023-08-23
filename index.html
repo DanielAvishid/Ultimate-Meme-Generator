@@ -4,16 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="styles/styles.css">
     <title>Ultimate-Meme-Generator</title>
 </head>
 
-<body>
-    <section class="main-container"></section>
-    <h1>Hey World</h1>
+<body class="main-layout" onload="onInit()">
+    <header class="main-header main-layout full">
+        <nav class="main-nav-container grid space-between align-center flow-column">
+            <div class="logo">LOGO</div>
+            <div class="main-nav">
+                <ul class="clean-list grid flow-column">
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
 
-    <script src="js/meme-service.js"></script>
-    <script src="js/main.js"></script>
+        </nav>
+    </header>
+
+
+    <section class="main-container">
+        <canvas width="500" height="500">
+        </canvas>
+        <span>HI</span>
+    </section>
+
+    <script src="js/MemeService.js"></script>
+    <script src="js/memeController.js"></script>
 </body>
 
 </html>
