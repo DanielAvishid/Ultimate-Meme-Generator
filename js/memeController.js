@@ -2,7 +2,7 @@
 
 let gElCanvas
 let gCtx
-let gStartPos
+let gClickPos
 
 let gX1 = 250
 let gY2 = 100
@@ -19,80 +19,75 @@ function onInit() {
 function addMouseListeners() {
     gElCanvas.addEventListener('mousedown', onDown)
     gElCanvas.addEventListener('mousemove', onMove)
-    // gElCanvas.addEventListener('mouseup', onUp)
+    gElCanvas.addEventListener('mouseup', onUp)
 }
 
 function addTouchListeners() {
     gElCanvas.addEventListener('touchstart', onDown)
     gElCanvas.addEventListener('touchmove', onMove)
-    // gElCanvas.addEventListener('touchend', onUp)
+    gElCanvas.addEventListener('touchend', onUp)
 }
 
 function onDown(ev) {
     const pos = getEvPos(ev)
-    console.log(pos)
-
-    // if (!isTextClicked(pos)) return
-
-    // setLineDrag(true)
-    // gStartPos = pos
+    if (!isLineClicked(pos)) {
+        renderMemeNoneSelected()
+        return
+    }
+    renderMeme()
+    setLineDrag(true)
+    gClickPos = pos
 }
 
 function onMove(ev) {
-    // const { isDrag } = getSelectedLine()
-    // if (!isDrag) return
+    const selectedLine = getSelectedLine()
+    if (!selectedLine.isDrag) return
+    const pos = getEvPos(ev)
 
-    // const pos = getEvPos(ev)
+    const dx = pos.x - selectedLine.pos.x
+    const dy = pos.y - selectedLine.pos.y
+    moveSelectedLine(dx, dy)
 
-    // const dx = pos.x - gStartPos.x
-    // const dy = pos.y - gStartPos.y
-    // moveSelectedLine(dx, dy)
-
-    // gStartPos = pos
-
-    // renderMeme()
+    renderMeme()
 }
 
-function onUp(ev) {
-
-}
-
-function drawRectOnSelected(x, y) {
-    gCtx.beginPath();
-    gCtx.lineWidth = "4";
-    gCtx.strokeStyle = "black";
-    gCtx.rect(100, 300, gCtx.measureText(selected.txt), selected.size);
-    gCtx.stroke();
+function onUp() {
+    setLineDrag(false)
 }
 
 function renderMeme() {
     const memes = getMeme()
     const currImg = getImgById(+memes.selectedImgId)
     drawImg(currImg)
-
     drawAllLines()
+    drawSelectedLine()
+}
+
+function renderMemeNoneSelected() {
+    const memes = getMeme()
+    const currImg = getImgById(+memes.selectedImgId)
+    drawImg(currImg)
+    drawAllLines()
+    // drawSelectedLine()
 }
 
 function drawAllLines() {
     const lines = getLines()
     setTimeout(() => {
         lines.forEach(line => {
-            drawText(line.pos.x, line.pos.y, line.txt, line.size, line.color)
-            drawRect(line.pos.x, line.pos.y, line.txt, line.size)
+            drawText(line.pos.x, line.pos.y, line.txt, line.size, line.strokeColor, line.fillColor, line)
         })
-    }, 0.00001);
+    }, 0.0000001)
 }
 
-function drawText(x, y, txt, size, color) {
-    gCtx.lineWidth = 1
-    gCtx.strokeStyle = color
-    gCtx.fillStyle = color
-    gCtx.font = `${size}px Arial`
-    gCtx.textAlign = 'left'
-    gCtx.textBaseline = 'left'
-
-    gCtx.fillText(txt, x, y)
-    gCtx.strokeText(txt, x, y)
+function drawSelectedLine() {
+    const selectedLine = getSelectedLine()
+    if (selectedLine === undefined) return
+    const { pos, txt, size, strokeColor, fillColor } = selectedLine
+    setTimeout(() => {
+        drawText(pos.x, pos.y, txt, size, strokeColor, fillColor, selectedLine)
+        drawRect(pos.x, pos.y, txt, size)
+    }, 0.0000002)
 }
 
 function drawImg(img) {
@@ -104,26 +99,34 @@ function drawImg(img) {
 }
 
 function drawRect(x, y, txt, size) {
-    const width = gCtx.measureText(txt)
+    const width = gCtx.measureText(txt).width
     gCtx.lineWidth = 3
     gCtx.strokeStyle = 'black'
-    gCtx.strokeRect(x - width.width / 2 - 10, y - size / 2 - 10, width.width + 20, size + 20)
+    gCtx.strokeRect(x - width / 2 - 10, y - size / 2 - 10, width + 20, size + 20)
 }
 
-function drawText(x, y, txt, size, color) {
+function drawText(x, y, txt, size, strokeColor, fillColor, line) {
     gCtx.lineWidth = 1
-    gCtx.strokeStyle = color
-    gCtx.fillStyle = color
+    gCtx.strokeStyle = strokeColor
+    gCtx.fillStyle = fillColor
     gCtx.font = `${size}px Arial`
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
 
     gCtx.fillText(txt, x, y)
     gCtx.strokeText(txt, x, y)
+
+    const width = gCtx.measureText(txt).width
+    setLineSelectPos(x, y, size, width, line)
 }
 
-function colorPicker(color) {
-    setLineColor(color)
+function onChangeStrokeColor(color) {
+    setLineStrokeColor(color)
+    renderMeme()
+}
+
+function onChangeFillColor(color) {
+    setLineFillColor(color)
     renderMeme()
 }
 
@@ -161,6 +164,7 @@ function onAddLine() {
 
 function onSwitchLine() {
     switchLine()
+    renderMeme()
 }
 
 function getEvPos(ev) {

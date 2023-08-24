@@ -26,9 +26,10 @@
         </canvas>
         <div class="tools">
             <label>
-                <input type="text" placeholder="enter txt here" oninput="onTxtChange(this.value)">
+                <input class="txt-input" type="text" oninput="onTxtChange(this.value)">
             </label>
-            <input type="color" onchange="colorPicker(this.value)">
+            <input class="stroke-color-input" value="#000000" type="color" onchange="onChangeStrokeColor(this.value)">
+            <input class="fill-color-input" value="#000000" type="color" onchange="onChangeFillColor(this.value)">
             <button class="add-line" onclick="onSwitchLine()">Switch Line</button>
             <button class="add-line" onclick="onAddLine()">Add Line</button>
             <button class="font-increase-btn" onclick="fontIncreaseLine()">+</button>
