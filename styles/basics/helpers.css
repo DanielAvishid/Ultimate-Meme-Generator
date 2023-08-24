@@ -16,10 +16,22 @@
     justify-content: space-between;
 }
 
+.grid.gap50 {
+    gap: 50px;
+}
+
+.grid.gap15 {
+    gap: 15px;
+}
+
 /* flex helpers  */
 
 .flex {
     display: flex;
+}
+
+.flex.col {
+    flex-direction: column;
 }
 
 .flex.space-between {
@@ -40,10 +52,13 @@
 
 /* display helpers */
 
+.block {
+    display: block;
+}
+
 .hidden {
     display: none;
 }
-
 
 /* Position helpers */
 
@@ -54,3 +69,18 @@
 .relative {
     position: relative;
 }
+
+/* Text helpers */
+
+.text-center {
+    text-align: center;
+}
+
+/* Border helpers */
+
+.border {
+    padding: 15px;
+    border: 2px solid var(--clrSecondary);
+}
+
+/* Margin helpers */

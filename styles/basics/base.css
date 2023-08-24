@@ -2,6 +2,12 @@
     box-sizing: border-box;
 }
 
+html {
+    font-family: lato, sans-serif;
+    color: var(--clrPrimary);
+    line-height: 1.25rem;
+}
+
 body {
     margin: 0;
 }
@@ -11,8 +17,42 @@ canvas {
     border: 1px solid black;
 }
 
+input {
+    /* margin: 0 0 1em; */
+    /* padding: 10px; */
+    font-size: 25px;
+}
+
 img {
     max-width: 250px;
     max-height: 250px;
     width: 100%;
+}
+
+a {
+    color: var(--clrPrimary-3);
+    text-decoration: none;
+}
+
+/* buttons */
+
+.btn {
+    letter-spacing: 0.03em;
+    font-weight: 600;
+    color: var(--clrPrimary-2);
+    background-color: white;
+    border: 2px solid var(--clrPrimary-2);
+    padding: 0.625em 1.25em;
+    font-size: 1em;
+    font-family: inherit;
+    cursor: pointer;
+
+    transition:
+        color 0.3s,
+        border-color 0.3s;
+}
+
+.btn:hover {
+    color: var(--clrSecondary);
+    border-color: var(--clrSecondary);
 }

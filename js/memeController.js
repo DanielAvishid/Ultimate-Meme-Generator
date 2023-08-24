@@ -189,6 +189,15 @@ function onImgSelect(elBtn) {
     const imgId = elBtn.dataset.imageId
     setSelectedImg(imgId)
     renderMeme()
+    document.querySelector('.editor-container').classList.remove('hidden')
+    document.querySelector('.gallery-container').classList.add('hidden')
+    document.querySelector('.gallery-link').classList.remove('active')
+}
+
+function showGallery() {
+    document.querySelector('.editor-container').classList.add('hidden')
+    document.querySelector('.gallery-container').classList.remove('hidden')
+    document.querySelector('.gallery-link').classList.add('active')
 }
 
 function onAddLine() {
@@ -199,6 +208,10 @@ function onAddLine() {
 function onSwitchLine() {
     switchLine()
     renderMeme()
+}
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open')
 }
 
 function getEvPos(ev) {

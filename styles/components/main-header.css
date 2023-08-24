@@ -1,4 +1,38 @@
 .main-header {
-    height: 100px;
-    background-color: green;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: var(--clrPrimary2);
+    box-shadow: inset 0px -6px 0 var(--clrPrimary3);
+}
+
+.main-header .main-nav li {
+    border-inline-start: 2px solid var(--clrPrimary3);
+}
+
+.main-header .main-nav li:last-of-type {
+    border-inline-end: 2px solid var(--clrPrimary3);
+}
+
+.main-header .main-nav a {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+    min-width: var(--headerHeight);
+    min-height: var(--headerHeight);
+
+    transition: box-shadow 0.2s;
+    will-change: box-shadow;
+}
+
+.main-header .main-nav a:hover {
+    box-shadow: inset 0px -6px 0 var(--clrSecondary);
+}
+
+.main-header .main-nav a.active {
+    font-weight: 700;
+    color: var(--clrSecondary);
+    box-shadow: inset 0px -6px 0 var(--clrSecondary);
+    cursor: default;
 }

@@ -9,50 +9,58 @@
 </head>
 
 <body class="main-layout" onload="onInit()">
-    <header class="main-header main-layout full">
+    <header class="main-header main-layout full mb-50">
         <nav class="main-nav-container grid space-between align-center flow-column">
-            <div class="logo">LOGO</div>
+            <div class="logo">Logo</div>
             <div class="main-nav">
                 <ul class="clean-list grid flow-column">
-                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#" class="gallery-link active" onclick="showGallery()">Gallery</a></li>
                     <li><a href="#">About</a></li>
                 </ul>
             </div>
+            <button class="btn-toggle-menu" onclick="toggleMenu()">☰</button>
         </nav>
     </header>
-
-    <section class="editor-container flex">
+    <section class="editor-container grid flow-column gap15 hidden">
         <canvas width="500" height="500">
         </canvas>
-        <div class="tools">
-            <label>
-                <input class="txt-input" type="text" oninput="onTxtChange(this.value)">
-            </label>
-            <input class="stroke-color-input" value="#000000" type="color" onchange="onChangeStrokeColor(this.value)">
-            <input class="fill-color-input" value="#000000" type="color" onchange="onChangeFillColor(this.value)">
-            <button class="add-line" onclick="onSwitchLine()">Switch Line</button>
-            <button class="add-line" onclick="onAddLine()">Add Line</button>
-            <button onclick="onLineMoveUp()"><i class="fa-solid fa-chevron-up"></i></button>
-            <button onclick="onLineMoveDown()"><i class="fa-solid fa-chevron-down"></i></button>
-            <button onclick="onLineAlignLeft()"><i class="fa-solid fa-align-left"></i></button>
-            <button onclick="onLineAlignCenter()"><i class="fa-solid fa-align-center"></i></button>
-            <button onclick="onLineAlignRight()"><i class="fa-solid fa-align-right"></i></button>
-            <button class="font-increase-btn" onclick="onFontIncreaseLine()">+</button>
-            <button class="font-decrease-btn" onclick="onFontDecreaseLine()">-</button>
-            <select class="family-opt" onchange="onSetFontFamily(this.value)">
-                <option class="op-impact" value="impact">Impact</option>
-                <option class="op-arial" value="Arial, sans-serif">Arial</option>
-                <option class="op-verdana" value="Verdana, sans-serif">Verdana</option>
-                <option class="op-tahoma" value="Tahoma, sans-serif">Tahoma</option>
-                <option class="op-trebuchet-ms" value="`'Trebuchet MS', sans-serif`">Trebuchet-MS</option>
-                <option class="op-times" value="`'Times New Roman', serif`">Times new roman</option>
-                <option class="op-georgia" value="'Georgia, serif'">Georgia</option>
-                <option class="op-garamond" value="garamond">Garamond</option>
-                <option class="op-courier-new" value="'Courier New', monospace">Courier-NEW</option>
-                <option class="op-brush" value="`'Brush Script MT', cursive`">Brush</option>
-            </select>
-            <button onclick="onLineDelete()"><i class="fa-solid fa-trash"></i></button>
-            <a href="#" onclick="downloadCanvas(this)" download="file-name">Download</a>
+        <div class="tools-container border grid gap15">
+            <input class="txt-input border" type="text" oninput="onTxtChange(this.value)">
+            <div class="options1-container border">
+                <button class="btn" onclick="onLineMoveUp()"><i class="fa-solid fa-chevron-up"></i></button>
+                <button class="btn" onclick="onLineMoveDown()"><i class="fa-solid fa-chevron-down"></i></button>
+                <button class="btn" onclick="onSwitchLine()"><i class="fa-solid fa-repeat"></i></button>
+                <button class="btn" onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
+                <button class="btn" onclick="onLineDelete()"><i class="fa-solid fa-trash"></i></button>
+            </div>
+            <div class="options2-container border">
+                <button class="btn" onclick="onFontIncreaseLine()"><i class="fa-solid fa-font"></i>+</button>
+                <button class="btn" onclick="onFontDecreaseLine()"><i class="fa-solid fa-font"></i>-</button>
+                <button class="btn" onclick="onLineAlignLeft()"><i class="fa-solid fa-align-left"></i></button>
+                <button class="btn" onclick="onLineAlignCenter()"><i class="fa-solid fa-align-center"></i></button>
+                <button class="btn" onclick="onLineAlignRight()"><i class="fa-solid fa-align-right"></i></button>
+                <select class="family-opt" onchange="onSetFontFamily(this.value)">
+                    <option class="op-impact" value="impact">Impact</option>
+                    <option class="op-arial" value="Arial, sans-serif">Arial</option>
+                    <option class="op-verdana" value="Verdana, sans-serif">Verdana</option>
+                    <option class="op-tahoma" value="Tahoma, sans-serif">Tahoma</option>
+                    <option class="op-trebuchet-ms" value="`'Trebuchet MS', sans-serif`">Trebuchet-MS</option>
+                    <option class="op-times" value="`'Times New Roman', serif`">Times new roman</option>
+                    <option class="op-georgia" value="'Georgia, serif'">Georgia</option>
+                    <option class="op-garamond" value="garamond">Garamond</option>
+                    <option class="op-courier-new" value="'Courier New', monospace">Courier-NEW</option>
+                    <option class="op-brush" value="`'Brush Script MT', cursive`">Brush</option>
+                </select>
+                <span>Stroke-Color:</span>
+                <input class="stroke-color-input" value="#000000" type="color"
+                    onchange="onChangeStrokeColor(this.value)">
+                <span>Fill-Color:</span>
+                <input class="fill-color-input" value="#000000" type="color" onchange="onChangeFillColor(this.value)">
+            </div>
+            <div class="options3-container border">
+                <a href="#" onclick="downloadCanvas(this)" download="file-name">Download</a>
+                <a href="#" onclick="downloadCanvas(this)" download="file-name">Share</a>
+            </div>
         </div>
     </section>
 
