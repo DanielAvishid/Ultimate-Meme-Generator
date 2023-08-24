@@ -13,10 +13,9 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d')
     addMouseListeners()
     addTouchListeners()
+    resizeCanvas()
+    window.addEventListener('resize', resizeCanvas)
     renderMeme()
-    if (window.screen.width < 550) {
-        resizeCanvas(250, 250)
-    } else resizeCanvas(500, 500)
 }
 
 function addMouseListeners() {
@@ -236,7 +235,13 @@ function getEvPos(ev) {
     return pos
 }
 
-function resizeCanvas(height, width) {
-    gElCanvas.width = width
-    gElCanvas.height = height
+function resizeCanvas() {
+    if (window.screen.width < 550) {
+        gElCanvas.width = 250
+        gElCanvas.height = 250
+    } else {
+        gElCanvas.width = 500
+        gElCanvas.height = 500
+    }
+    renderMeme()
 }
