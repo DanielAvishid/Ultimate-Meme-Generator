@@ -11,8 +11,8 @@ var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
-        _createLine(250, 100, 'Hey mister Police Man', '#000000', '#ffc0cb', 30,),
-        _createLine(250, 200, 'I sometimes eat Falafel', '#000000', '#ff0000', 30),
+        _createLine(250, 100, 'Hey mister Police Man', '#000000', '#ffc0cb', 'impact', 30),
+        _createLine(250, 200, 'I sometimes eat Falafel', '#000000', '#ff0000', 'impact', 30),
     ]
 }
 
@@ -29,6 +29,7 @@ function isLineClicked(clickedPos) {
     document.querySelector('.txt-input').value = clickedLine.txt
     document.querySelector('.stroke-color-input').value = clickedLine.strokeColor
     document.querySelector('.fill-color-input').value = clickedLine.fillColor
+    document.querySelector('.family-opt').value = clickedLine.fontFamily
     return true
 }
 
@@ -64,12 +65,13 @@ function addLine() {
     gMeme.lines.push(newLine)
 }
 
-function _createLine(x, y, txt = 'Enter txt here', strokeColor = '#000000', fillColor = '#ffff00', size = 30, isDrag = false) {
+function _createLine(x, y, txt = 'Enter txt here', strokeColor = '#000000', fillColor = '#ffff00', fontFamily = 'impact', size = 30, isDrag = false) {
     const newLine = {
         pos: { x: x, y: y },
         txt,
         strokeColor,
         fillColor,
+        fontFamily,
         size: size,
         isDrag
     }
@@ -97,18 +99,82 @@ function switchLine() {
     }
 }
 
+function lineDelete() {
+    const lineSelectedIdx = gMeme.selectedLineIdx
+    gMeme.lines.splice(lineSelectedIdx, 1)
+}
+
+function lineMoveUp() {
+    const selectedLine = getSelectedLine()
+    selectedLine.pos.y -= 10
+}
+
+function lineMoveDown() {
+    const selectedLine = getSelectedLine()
+    selectedLine.pos.y += 10
+}
+
+function lineAlignLeft() {
+    const selectedLine = getSelectedLine()
+    selectedLine.pos.x = 150
+}
+
+function lineAlignCenter() {
+    const selectedLine = getSelectedLine()
+    selectedLine.pos.x = 250
+}
+
+function lineAlignRight() {
+    const selectedLine = getSelectedLine()
+    selectedLine.pos.x = 350
+}
+
 function increaseFontSize() {
     const selectedLine = getSelectedLine()
-
     if (selectedLine.size > 48) return
     selectedLine.size += 4
 }
 
 function decreaseFontSize() {
     const selectedLine = getSelectedLine()
-
     if (selectedLine.size <= 4) return
     selectedLine.size -= 4
+}
+
+function setFontFamily(fontFamily) {
+    const selectedLine = getSelectedLine()
+    switch (fontFamily) {
+        case 'impact':
+            selectedLine.fontFamily = 'impact'
+            break
+        case 'Arial, sans-serif':
+            selectedLine.fontFamily = 'Arial, sans-serif'
+            break
+        case 'Verdana, sans-serif':
+            selectedLine.fontFamily = 'Verdana, sans-serif'
+            break
+        case 'Tahoma, sans-serif':
+            selectedLine.fontFamily = 'Tahoma, sans-serif'
+            break
+        case `'Trebuchet MS', sans-serif`:
+            selectedLine.fontFamily = `'Trebuchet MS', sans-serif`
+            break
+        case `'Times New Roman', serif`:
+            selectedLine.fontFamily = `'Times New Roman', serif`
+            break
+        case 'Georgia, serif':
+            selectedLine.fontFamily = 'Georgia, serif'
+            break
+        case 'garamond':
+            selectedLine.fontFamily = 'garamond'
+            break
+        case `'Courier New', monospace`:
+            selectedLine.fontFamily = `'Courier New', monospace`
+            break
+        case `'Brush Script MT', cursive`:
+            selectedLine.fontFamily = `'Brush Script MT', cursive`
+            break
+    }
 }
 
 function setSelectedLine(lineIdx) {

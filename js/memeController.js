@@ -68,14 +68,13 @@ function renderMemeNoneSelected() {
     const currImg = getImgById(+memes.selectedImgId)
     drawImg(currImg)
     drawAllLines()
-    // drawSelectedLine()
 }
 
 function drawAllLines() {
     const lines = getLines()
     setTimeout(() => {
         lines.forEach(line => {
-            drawText(line.pos.x, line.pos.y, line.txt, line.size, line.strokeColor, line.fillColor, line)
+            drawText(line.pos.x, line.pos.y, line.txt, line.size, line.strokeColor, line.fillColor, line.fontFamily, line)
         })
     }, 0.0000001)
 }
@@ -83,9 +82,9 @@ function drawAllLines() {
 function drawSelectedLine() {
     const selectedLine = getSelectedLine()
     if (selectedLine === undefined) return
-    const { pos, txt, size, strokeColor, fillColor } = selectedLine
+    const { pos, txt, size, strokeColor, fillColor, fontFamily } = selectedLine
     setTimeout(() => {
-        drawText(pos.x, pos.y, txt, size, strokeColor, fillColor, selectedLine)
+        drawText(pos.x, pos.y, txt, size, strokeColor, fillColor, fontFamily, selectedLine)
         drawRect(pos.x, pos.y, txt, size)
     }, 0.0000002)
 }
@@ -105,11 +104,11 @@ function drawRect(x, y, txt, size) {
     gCtx.strokeRect(x - width / 2 - 10, y - size / 2 - 10, width + 20, size + 20)
 }
 
-function drawText(x, y, txt, size, strokeColor, fillColor, line) {
+function drawText(x, y, txt, size, strokeColor, fillColor, fontFamily, line) {
     gCtx.lineWidth = 1
     gCtx.strokeStyle = strokeColor
     gCtx.fillStyle = fillColor
-    gCtx.font = `${size}px Arial`
+    gCtx.font = `${size}px ${fontFamily}`
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
 
@@ -130,13 +129,43 @@ function onChangeFillColor(color) {
     renderMeme()
 }
 
-function fontIncreaseLine() {
+function onFontIncreaseLine() {
     increaseFontSize()
     renderMeme()
 }
 
-function fontDecreaseLine() {
+function onFontDecreaseLine() {
     decreaseFontSize()
+    renderMeme()
+}
+
+function onLineAlignLeft() {
+    lineAlignLeft()
+    renderMeme()
+}
+
+function onLineAlignCenter() {
+    lineAlignCenter()
+    renderMeme()
+}
+
+function onLineAlignRight() {
+    lineAlignRight()
+    renderMeme()
+}
+
+function onLineMoveUp() {
+    lineMoveUp()
+    renderMeme()
+}
+
+function onLineMoveDown() {
+    lineMoveDown()
+    renderMeme()
+}
+
+function onLineDelete() {
+    lineDelete()
     renderMeme()
 }
 
@@ -148,6 +177,11 @@ function downloadCanvas(elLink) {
 
 function onTxtChange(txt) {
     setLineTxt(txt)
+    renderMeme()
+}
+
+function onSetFontFamily(fontFamily) {
+    setFontFamily(fontFamily)
     renderMeme()
 }
 
