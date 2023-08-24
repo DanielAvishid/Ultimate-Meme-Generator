@@ -14,6 +14,9 @@ function onInit() {
     addMouseListeners()
     addTouchListeners()
     renderMeme()
+    if (window.screen.width < 550) {
+        resizeCanvas(250, 250)
+    } else resizeCanvas(500, 500)
 }
 
 function addMouseListeners() {
@@ -188,6 +191,9 @@ function onSetFontFamily(fontFamily) {
 function onImgSelect(elBtn) {
     const imgId = elBtn.dataset.imageId
     setSelectedImg(imgId)
+    if (window.screen.width < 550) {
+        resizeCanvas(250, 250)
+    } else resizeCanvas(500, 500)
     renderMeme()
     document.querySelector('.editor-container').classList.remove('hidden')
     document.querySelector('.gallery-container').classList.add('hidden')
@@ -228,4 +234,9 @@ function getEvPos(ev) {
         }
     }
     return pos
+}
+
+function resizeCanvas(height, width) {
+    gElCanvas.width = width
+    gElCanvas.height = height
 }

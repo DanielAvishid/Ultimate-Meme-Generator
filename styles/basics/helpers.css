@@ -84,3 +84,7 @@
 }
 
 /* Margin helpers */
+
+.mb-50 {
+    margin-block-end: 50px;
+}

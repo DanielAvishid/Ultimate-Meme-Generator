@@ -55,6 +55,11 @@
     .main-layout {
         grid-template-columns: minmax(20px, 1fr) minmax(auto, var(--m)) minmax(20px, 1fr);
     }
+
+    .editor-container {
+        grid-auto-flow: column;
+    }
+
 }
 
 /* LARGE */

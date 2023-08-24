@@ -21,9 +21,11 @@
             <button class="btn-toggle-menu" onclick="toggleMenu()">☰</button>
         </nav>
     </header>
-    <section class="editor-container grid flow-column gap15 hidden">
-        <canvas width="500" height="500">
-        </canvas>
+    <section class="editor-container grid gap15 hidden">
+        <div class="canvas-container">
+            <canvas width="200" height="200">
+            </canvas>
+        </div>
         <div class="tools-container border grid gap15">
             <input class="txt-input border" type="text" oninput="onTxtChange(this.value)">
             <div class="options1-container border">

@@ -11,6 +11,7 @@
 @import url("components/main-header.css");
 @import url("components/editor-container.css");
 @import url("components/tools-container.css");
+@import url("components/canvas-container.css");
 
 /* MEDIA QUERIES */
 @import url("setup/mq.css");
