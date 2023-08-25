@@ -1,0 +1,16 @@
+.gallery-container {
+    padding: 25px;
+    border: 4px solid #0F4C75;
+    background-color: #BBE1FA;
+    gap: 10px;
+}
+
+.gallery-container .img-container {
+    max-width: 250px;
+    max-height: 250px;
+    min-width: 250px;
+    margin: auto;
+    margin-block-end: 20px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    /* box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px; */
+}

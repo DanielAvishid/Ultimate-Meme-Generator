@@ -12,10 +12,19 @@ body {
     margin: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
 canvas {
     background-color: white;
     border: 1px solid black;
-    box-shadow: 10px 10px 5px gray;
+    box-shadow: 10px 10px 5px black;
 }
 
 input {
@@ -25,8 +34,6 @@ input {
 }
 
 img {
-    max-width: 250px;
-    max-height: 250px;
     width: 100%;
 }
 

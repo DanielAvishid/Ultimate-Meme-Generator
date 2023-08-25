@@ -197,12 +197,14 @@ function onImgSelect(elBtn) {
     document.querySelector('.editor-container').classList.remove('hidden')
     document.querySelector('.gallery-container').classList.add('hidden')
     document.querySelector('.gallery-link').classList.remove('active')
+    document.querySelector('.gallery-h1').classList.add('hidden')
 }
 
 function showGallery() {
     document.querySelector('.editor-container').classList.add('hidden')
     document.querySelector('.gallery-container').classList.remove('hidden')
     document.querySelector('.gallery-link').classList.add('active')
+    document.querySelector('.gallery-h1').classList.remove('hidden')
 }
 
 function onAddLine() {

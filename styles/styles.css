@@ -13,6 +13,8 @@
 @import url("components/tools-container.css");
 @import url("components/canvas-container.css");
 @import url("components/select-container.css");
+@import url("components/gallery-container.css");
+@import url("components/gallery-h1.css");
 
 /* MEDIA QUERIES */
 @import url("setup/mq.css");
