@@ -13,7 +13,6 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d')
     addMouseListeners()
     addTouchListeners()
-    resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
     renderMeme()
 }
@@ -190,9 +189,6 @@ function onSetFontFamily(fontFamily) {
 function onImgSelect(elBtn) {
     const imgId = elBtn.dataset.imageId
     setSelectedImg(imgId)
-    if (window.screen.width < 550) {
-        resizeCanvas(250, 250)
-    } else resizeCanvas(500, 500)
     renderMeme()
     document.querySelector('.editor-container').classList.remove('hidden')
     document.querySelector('.gallery-container').classList.add('hidden')
@@ -238,12 +234,13 @@ function getEvPos(ev) {
 }
 
 function resizeCanvas() {
-    if (window.screen.width < 550) {
+    if (window.innerWidth < 600) {
         gElCanvas.width = 250
         gElCanvas.height = 250
+        renderMeme()
     } else {
         gElCanvas.width = 500
         gElCanvas.height = 500
+        renderMeme()
     }
-    renderMeme()
 }

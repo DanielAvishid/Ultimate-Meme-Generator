@@ -24,3 +24,35 @@
 .select-container .select:hover::after {
     color: #f39c12;
 }
+
+.select-container .select-family .op-impact {
+    font-family: impact;
+}
+
+.select-container .select-family .op-arial {
+    font-family: Arial, sans-serif;
+}
+
+.select-container .select-family .op-verdana {
+    font-family: Verdana, sans-serif;
+}
+
+.select-container .select-family .op-tahoma {
+    font-family: Tahoma, sans-serif;
+}
+
+.select-container .select-family .op-trebuchet-ms {
+    font-family: "Times New Roman", Times, serif;
+}
+
+.select-container .select-family .op-times {
+    font-family: 'Georgia, serif';
+}
+
+.select-container .select-family .op-georgia {}
+
+.select-container .select-family .op-garamond {}
+
+.select-container .select-family .op-courier-new {}
+
+.select-container .select-family .op-brush {}
