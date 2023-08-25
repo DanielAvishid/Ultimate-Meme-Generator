@@ -55,6 +55,10 @@
 /* SMALL */
 @media (min-width: 660px) {
 
+    .gallery-h1 {
+        font-size: 6em;
+    }
+
     .main-layout {
         grid-template-columns: minmax(20px, 1fr) minmax(auto, var(--s)) minmax(20px, 1fr);
     }
