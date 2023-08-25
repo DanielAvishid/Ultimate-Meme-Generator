@@ -42,6 +42,14 @@
     align-items: center;
 }
 
+.flex.reverse {
+    flex-direction: row-reverse;
+}
+
+.flex.gap5 {
+    gap: 5px;
+}
+
 /* list helpers */
 
 .clean-list {
@@ -80,11 +88,15 @@
 
 .border {
     padding: 15px;
-    border: 2px solid var(--clrSecondary);
+    border: 5px solid var(--clrSecondary);
 }
 
 /* Margin helpers */
 
 .mb-50 {
     margin-block-end: 50px;
+}
+
+.mr-3 {
+    margin-inline-end: 3px;
 }

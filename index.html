@@ -28,42 +28,68 @@
         </div>
         <div class="tools-container border grid gap15">
             <input class="txt-input border" type="text" oninput="onTxtChange(this.value)">
-            <div class="options1-container border">
-                <button class="btn" onclick="onLineMoveUp()"><i class="fa-solid fa-chevron-up"></i></button>
-                <button class="btn" onclick="onLineMoveDown()"><i class="fa-solid fa-chevron-down"></i></button>
-                <button class="btn" onclick="onSwitchLine()"><i class="fa-solid fa-repeat"></i></button>
-                <button class="btn" onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
-                <button class="btn" onclick="onLineDelete()"><i class="fa-solid fa-trash"></i></button>
+            <div class="option-container flex reverse space-between border">
+                <div class="flex">
+                    <button class="btn mr-3" onclick="onSwitchLine()"><i class="fa-solid fa-repeat"></i></button>
+                    <button class="btn mr-3" onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
+                    <button class="btn" onclick="onLineDelete()"><i class="fa-solid fa-trash"></i></button>
+                </div>
+                <div class="flex">
+                    <button class="btn mr-3" onclick="onLineMoveUp()"><i class="fa-solid fa-chevron-up"></i></button>
+                    <button class="btn mr-3" onclick="onLineMoveDown()"><i
+                            class="fa-solid fa-chevron-down"></i></button>
+                </div>
             </div>
-            <div class="options2-container border">
-                <button class="btn" onclick="onFontIncreaseLine()"><i class="fa-solid fa-font"></i>+</button>
-                <button class="btn" onclick="onFontDecreaseLine()"><i class="fa-solid fa-font"></i>-</button>
-                <button class="btn" onclick="onLineAlignLeft()"><i class="fa-solid fa-align-left"></i></button>
-                <button class="btn" onclick="onLineAlignCenter()"><i class="fa-solid fa-align-center"></i></button>
-                <button class="btn" onclick="onLineAlignRight()"><i class="fa-solid fa-align-right"></i></button>
-                <select class="family-opt" onchange="onSetFontFamily(this.value)">
-                    <option class="op-impact" value="impact">Impact</option>
-                    <option class="op-arial" value="Arial, sans-serif">Arial</option>
-                    <option class="op-verdana" value="Verdana, sans-serif">Verdana</option>
-                    <option class="op-tahoma" value="Tahoma, sans-serif">Tahoma</option>
-                    <option class="op-trebuchet-ms" value="`'Trebuchet MS', sans-serif`">Trebuchet-MS</option>
-                    <option class="op-times" value="`'Times New Roman', serif`">Times new roman</option>
-                    <option class="op-georgia" value="'Georgia, serif'">Georgia</option>
-                    <option class="op-garamond" value="garamond">Garamond</option>
-                    <option class="op-courier-new" value="'Courier New', monospace">Courier-NEW</option>
-                    <option class="op-brush" value="`'Brush Script MT', cursive`">Brush</option>
-                </select>
-                <span>Stroke-Color:</span>
-                <input class="stroke-color-input" value="#000000" type="color"
-                    onchange="onChangeStrokeColor(this.value)">
-                <span>Fill-Color:</span>
-                <input class="fill-color-input" value="#000000" type="color" onchange="onChangeFillColor(this.value)">
+            <div class="options2-container grid border">
+                <div class="flex space-between">
+                    <div>
+                        <button class="btn" onclick="onFontIncreaseLine()"><i class="fa-solid fa-font"></i>+</button>
+                        <button class="btn" onclick="onFontDecreaseLine()"><i class="fa-solid fa-font"></i>-</button>
+                    </div>
+                    <div>
+                        <button class="btn" onclick="onLineAlignLeft()"><i class="fa-solid fa-align-left"></i></button>
+                        <button class="btn" onclick="onLineAlignCenter()"><i
+                                class="fa-solid fa-align-center"></i></button>
+                        <button class="btn" onclick="onLineAlignRight()"><i
+                                class="fa-solid fa-align-right"></i></button>
+                    </div>
+                </div>
+                <div class="flex space-between align-center">
+                    <div class="colors-container flex gap5">
+                        <div class="flex col align-center">
+                            <span>Stroke</span>
+                            <input class="stroke-color-input" value="#000000" type="color"
+                                onchange="onChangeStrokeColor(this.value)">
+                        </div>
+                        <div class="flex col align-center">
+                            <span>Fill</span>
+                            <input class="fill-color-input" value="#000000" type="color"
+                                onchange="onChangeFillColor(this.value)">
+                        </div>
+                    </div>
+                    <div class="select-container">
+                        <div class="select">
+                            <select class="select-family" onchange="onSetFontFamily(this.value)">
+                                <option class="op-impact" value="impact">Impact</option>
+                                <option class="op-arial" value="Arial, sans-serif">Arial</option>
+                                <option class="op-verdana" value="Verdana, sans-serif">Verdana</option>
+                                <option class="op-tahoma" value="Tahoma, sans-serif">Tahoma</option>
+                                <option class="op-trebuchet-ms" value="`'Trebuchet MS', sans-serif`">Trebuchet-MS
+                                </option>
+                                <option class="op-times" value="`'Times New Roman', serif`">Times new roman</option>
+                                <option class="op-georgia" value="'Georgia, serif'">Georgia</option>
+                                <option class="op-garamond" value="garamond">Garamond</option>
+                                <option class="op-courier-new" value="'Courier New', monospace">Courier-NEW</option>
+                                <option class="op-brush" value="`'Brush Script MT', cursive`">Brush</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="options3-container border">
+            <div class="option-container border">
                 <a href="#" onclick="downloadCanvas(this)" download="file-name">Download</a>
                 <a href="#" onclick="downloadCanvas(this)" download="file-name">Share</a>
             </div>
-        </div>
     </section>
 
     <section class="gallery-container"></section>

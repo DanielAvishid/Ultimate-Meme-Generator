@@ -15,6 +15,7 @@ body {
 canvas {
     background-color: white;
     border: 1px solid black;
+    box-shadow: 10px 10px 5px gray;
 }
 
 input {
@@ -34,16 +35,37 @@ a {
     text-decoration: none;
 }
 
+select {
+    /* Reset Select */
+    appearance: none;
+    outline: 10px red;
+    border: 0;
+    box-shadow: none;
+    /* Personalize */
+    flex: 1;
+    padding: 0 1em;
+    color: #fff;
+    background-color: var(--clrSecondary);
+    background-image: none;
+    cursor: pointer;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
 /* buttons */
 
 .btn {
+    max-width: 50px;
+    min-height: 50px;
+    max-height: 50px;
     letter-spacing: 0.03em;
     font-weight: 600;
     color: var(--clrPrimary-2);
     background-color: white;
     border: 2px solid var(--clrPrimary-2);
     padding: 0.625em 1.25em;
-    font-size: 1em;
     font-family: inherit;
     cursor: pointer;
 
@@ -53,6 +75,14 @@ a {
 }
 
 .btn:hover {
+    animation: beat .6s alternate infinite;
     color: var(--clrSecondary);
     border-color: var(--clrSecondary);
+}
+
+@keyframes beat {
+    to {
+        /* font-size: 1.3em; */
+        scale: 1.15;
+    }
 }

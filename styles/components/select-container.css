@@ -1,0 +1,26 @@
+.select-container .select {
+    max-width: 200px;
+    position: relative;
+    display: flex;
+    width: 20em;
+    height: 3em;
+    border-radius: .25em;
+    overflow: hidden;
+    color: black;
+    background-color: var(--clrSecondary);
+}
+
+.select-container .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1em;
+    background-color: #34495e;
+    transition: .25s all ease;
+    pointer-events: none;
+}
+
+.select-container .select:hover::after {
+    color: #f39c12;
+}

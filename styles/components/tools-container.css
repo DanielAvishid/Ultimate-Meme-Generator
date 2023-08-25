@@ -1,4 +1,10 @@
 .tools-container .txt-input {
+    grid-template-rows: repeat(4, 1fr);
     min-height: 25px;
     max-height: 50px;
+}
+
+.tools-container {
+    border: 5px solid var(--clrSecondary);
+    box-shadow: inset 3px -2px 3px var(--clrSecondary);
 }

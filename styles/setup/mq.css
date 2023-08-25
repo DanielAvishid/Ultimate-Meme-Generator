@@ -33,6 +33,11 @@
     .main-header .main-nav li {
         border-bottom: 1px solid #ccc;
     }
+
+    .editor-container .options2-container {
+        grid-template-rows: repeat(2, 1fr);
+        gap: 30px;
+    }
 }
 
 /* SMALL */

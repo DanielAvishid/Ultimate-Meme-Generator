@@ -29,7 +29,7 @@ function isLineClicked(clickedPos) {
     document.querySelector('.txt-input').value = clickedLine.txt
     document.querySelector('.stroke-color-input').value = clickedLine.strokeColor
     document.querySelector('.fill-color-input').value = clickedLine.fillColor
-    document.querySelector('.family-opt').value = clickedLine.fontFamily
+    document.querySelector('.select-family').value = clickedLine.fontFamily
     return true
 }
 
