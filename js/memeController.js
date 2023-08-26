@@ -190,6 +190,10 @@ function onLineDelete() {
     DrawMeme()
 }
 
+function onSaveMeme() {
+    saveMeme()
+}
+
 function onDownloadCanvas(elLink) {
     const dataUrl = gElCanvas.toDataURL()
     elLink.href = dataUrl
@@ -235,6 +239,13 @@ function showGallery() {
     document.querySelector('.editor-container').classList.add('hidden')
     document.querySelector('.gallery-container').classList.remove('hidden')
     document.querySelector('.gallery-link').classList.add('active')
+    document.querySelector('.gallery-header').classList.remove('hidden')
+}
+
+function showSavedGallery() {
+    document.querySelector('.editor-container').classList.add('hidden')
+    document.querySelector('.gallery-container').classList.add('hidden')
+    document.querySelector('.gallery-link').classList.remove('active')
     document.querySelector('.gallery-header').classList.remove('hidden')
 }
 

@@ -30,7 +30,6 @@ var gLinesExample = [
 ]
 
 var gY = 300
-var gSavedMemes
 
 var gMeme = {
     selectedImgId: 1,
@@ -47,6 +46,12 @@ var gKeywordSearchCountMap = { 'funny': 0, 'cat': 0, 'baby': 0 }
 
 function getKeywordSearchMap() {
     return gKeywordSearchCountMap
+}
+
+function saveMeme() {
+    const savedMemes = loadFromStorage('savedMemesDB')
+    savedMemes.push(gMeme)
+    saveToStorage('savedMemesDB', savedMemes)
 }
 
 function isLineClicked(clickedPos) {

@@ -1,16 +1,22 @@
 // 'use strict'
 
-// renderGallery()
+// var gCanvasIdx = 1
 
-// function renderGallery() {
-//     const gallery =
-//         let strHTML = gallery.map(img =>
-//             `
-//         <div class="img-container">
-//     <img data-image-id="${img.id}" src="${img.url}" onclick="onImgSelect(this)">
-//     </div>
+// renderSavedMemes()
+
+// function renderSavedMemes() {
+//     const savedMemes = loadFromStorage('savedMemesDB')
+//     let strHTML = savedMemes.map(meme => {
+//         `
+//         <div class="canvas-container">
+//         <canvas class="canvas${gCanvasIdx}" width="250" height="250">
+//         </canvas>
 //     `
-//         )
-//     const elGallery = document.querySelector('.gallery-container')
+//         gElCanvas = document.querySelector(`.canvas${gCanvasIdx}`)
+//         gMeme = meme
+//         DrawMemeClean()
+//     }
+//     )
+//     const elGallery = document.querySelector('.saved-container')
 //     elGallery.innerHTML = strHTML.join('')
 // }
