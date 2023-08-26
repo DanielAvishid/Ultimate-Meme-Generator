@@ -7,4 +7,5 @@
 .tools-container {
     border: 5px solid var(--clrSecondary);
     box-shadow: inset 3px -2px 3px var(--clrSecondary);
+    box-shadow: 10px 10px 5px black;
 }

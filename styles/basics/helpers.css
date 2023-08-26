@@ -12,6 +12,10 @@
     align-items: center;
 }
 
+.grid.justify-start {
+    justify-content: start;
+}
+
 .grid.space-between {
     justify-content: space-between;
 }
@@ -40,6 +44,10 @@
 
 .flex.align-center {
     align-items: center;
+}
+
+.flex.align-end {
+    align-items: end;
 }
 
 .flex.reverse {

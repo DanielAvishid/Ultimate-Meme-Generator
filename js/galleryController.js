@@ -4,8 +4,6 @@ renderGallery()
 
 function renderGallery() {
     const gallery = getImgs()
-
-    console.log(gallery)
     let strHTML = gallery.map(img =>
         `
         <div class="img-container">

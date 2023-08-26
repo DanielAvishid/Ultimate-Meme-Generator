@@ -21,20 +21,33 @@ var gImgs = [
     { id: 19, url: 'images/18.jpg', keywords: ['funny'] },
 ]
 
+var gLinesExample = [
+    _createLine(250, 100, 'Js is so fun!', '#000000', '#ffc0cb', 'impact', 30),
+    _createLine(250, 100, 'Mister PoliceMan', '#000000', '#ffc0cb', 'impact', 30),
+    _createLine(250, 100, 'I eat falafel all day', '#000000', '#ffc0cb', 'impact', 30),
+    _createLine(250, 100, 'i Love JS', '#000000', '#ffc0cb', 'impact', 30),
+    _createLine(250, 100, 'Can we replace JS: NO!', '#000000', '#ffc0cb', 'impact', 30),
+]
+
 var gY = 300
+var gSavedMemes
 
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
-        _createLine(250, 100, 'Hey mister Police Man', '#000000', '#ffc0cb', 'impact', 30),
-        _createLine(250, 200, 'I sometimes eat Falafel', '#000000', '#ff0000', 'impact', 30),
+        _createLine(250, 100, 'Enter Text', '#000000', '#ffc0cb', 'impact', 30),
+        _createLine(250, 200, 'Enter Text', '#000000', '#ff0000', 'impact', 30),
     ]
 }
 
 var gSelectedPos
 
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+var gKeywordSearchCountMap = { 'funny': 0, 'cat': 0, 'baby': 0 }
+
+function getKeywordSearchMap() {
+    return gKeywordSearchCountMap
+}
 
 function isLineClicked(clickedPos) {
     const lines = getLines()
@@ -214,6 +227,19 @@ function getImgs() {
     return gImgs
 }
 
-function getMeme() {
+function getMemes() {
     return gMeme
+}
+
+function createRandomMeme() {
+    const randomLine = gLinesExample[getRandomInt(0, gLinesExample.length)]
+    const randomImg = gImgs[getRandomInt(0, gImgs.length)]
+    setSelectedImg(randomImg.id)
+    return randomLine
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
 }

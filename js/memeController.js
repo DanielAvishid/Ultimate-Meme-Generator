@@ -9,12 +9,12 @@ let gY2 = 100
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 function onInit() {
-    gElCanvas = document.querySelector('canvas')
+    gElCanvas = document.querySelector('.main-canvas')
     gCtx = gElCanvas.getContext('2d')
     addMouseListeners()
     addTouchListeners()
     window.addEventListener('resize', resizeCanvas)
-    renderMeme()
+    DrawMeme()
 }
 
 function addMouseListeners() {
@@ -32,10 +32,10 @@ function addTouchListeners() {
 function onDown(ev) {
     const pos = getEvPos(ev)
     if (!isLineClicked(pos)) {
-        renderMemeNoneSelected()
+        DrawMemeClean()
         return
     }
-    renderMeme()
+    DrawMeme()
     setLineDrag(true)
     gClickPos = pos
 }
@@ -49,23 +49,23 @@ function onMove(ev) {
     const dy = pos.y - selectedLine.pos.y
     moveSelectedLine(dx, dy)
 
-    renderMeme()
+    DrawMeme()
 }
 
 function onUp() {
     setLineDrag(false)
 }
 
-function renderMeme() {
-    const memes = getMeme()
-    const currImg = getImgById(+memes.selectedImgId)
-    drawImg(currImg)
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+function DrawMeme() {
+    drawSelectedImg()
     drawAllLines()
     drawSelectedLine()
 }
 
-function renderMemeNoneSelected() {
-    const memes = getMeme()
+function DrawMemeClean() {
+    const memes = getMemes()
     const currImg = getImgById(+memes.selectedImgId)
     drawImg(currImg)
     drawAllLines()
@@ -80,6 +80,12 @@ function drawAllLines() {
     }, 0.0000001)
 }
 
+function drawSelectedImg() {
+    const memes = getMemes()
+    const currImg = getImgById(+memes.selectedImgId)
+    drawImg(currImg)
+}
+
 function drawSelectedLine() {
     const selectedLine = getSelectedLine()
     if (selectedLine === undefined) return
@@ -90,19 +96,14 @@ function drawSelectedLine() {
     }, 0.0000002)
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////
+
 function drawImg(img) {
     const elImg = new Image()
     elImg.src = img.url
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
     }
-}
-
-function drawRect(x, y, txt, size) {
-    const width = gCtx.measureText(txt).width
-    gCtx.lineWidth = 3
-    gCtx.strokeStyle = 'black'
-    gCtx.strokeRect(x - width / 2 - 10, y - size / 2 - 10, width + 20, size + 20)
 }
 
 function drawText(x, y, txt, size, strokeColor, fillColor, fontFamily, line) {
@@ -120,57 +121,76 @@ function drawText(x, y, txt, size, strokeColor, fillColor, fontFamily, line) {
     setLineSelectPos(x, y, size, width, line)
 }
 
+function drawRect(x, y, txt, size) {
+    const width = gCtx.measureText(txt).width
+    gCtx.lineWidth = 3
+    gCtx.strokeStyle = 'black'
+    gCtx.strokeRect(x - width / 2 - 10, y - size / 2 - 10, width + 20, size + 20)
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
 function onChangeStrokeColor(color) {
     setLineStrokeColor(color)
-    renderMeme()
+    DrawMeme()
+}
+
+function onAddLine() {
+    addLine()
+    DrawMeme()
+}
+
+function onSwitchLine() {
+    switchLine()
+    DrawMeme()
 }
 
 function onChangeFillColor(color) {
     setLineFillColor(color)
-    renderMeme()
+    DrawMeme()
 }
 
 function onFontIncreaseLine() {
     increaseFontSize()
-    renderMeme()
+    DrawMeme()
 }
 
 function onFontDecreaseLine() {
     decreaseFontSize()
-    renderMeme()
+    DrawMeme()
 }
 
 function onLineAlignLeft() {
     lineAlignLeft()
-    renderMeme()
+    DrawMeme()
 }
 
 function onLineAlignCenter() {
     lineAlignCenter()
-    renderMeme()
+    DrawMeme()
 }
 
 function onLineAlignRight() {
     lineAlignRight()
-    renderMeme()
+    DrawMeme()
 }
 
 function onLineMoveUp() {
     lineMoveUp()
-    renderMeme()
+    DrawMeme()
 }
 
 function onLineMoveDown() {
     lineMoveDown()
-    renderMeme()
+    DrawMeme()
 }
 
 function onLineDelete() {
     lineDelete()
-    renderMeme()
+    DrawMeme()
 }
 
-function downloadCanvas(elLink) {
+function onDownloadCanvas(elLink) {
     const dataUrl = gElCanvas.toDataURL()
     elLink.href = dataUrl
     elLink.download = 'my-meme'
@@ -178,39 +198,44 @@ function downloadCanvas(elLink) {
 
 function onTxtChange(txt) {
     setLineTxt(txt)
-    renderMeme()
+    DrawMeme()
 }
 
 function onSetFontFamily(fontFamily) {
     setFontFamily(fontFamily)
-    renderMeme()
+    DrawMeme()
 }
 
 function onImgSelect(elBtn) {
     const imgId = elBtn.dataset.imageId
     setSelectedImg(imgId)
-    renderMeme()
+    resizeCanvas()
+    DrawMeme()
     document.querySelector('.editor-container').classList.remove('hidden')
     document.querySelector('.gallery-container').classList.add('hidden')
     document.querySelector('.gallery-link').classList.remove('active')
-    document.querySelector('.gallery-h1').classList.add('hidden')
+    document.querySelector('.gallery-header').classList.add('hidden')
 }
+
+function onRandomMeme() {
+    const randomLine = createRandomMeme()
+    const newLines = [randomLine]
+    gMeme.lines = newLines
+    resizeCanvas()
+    DrawMeme()
+    document.querySelector('.editor-container').classList.remove('hidden')
+    document.querySelector('.gallery-container').classList.add('hidden')
+    document.querySelector('.gallery-link').classList.remove('active')
+    document.querySelector('.gallery-header').classList.add('hidden')
+}
+
+///////////////////////////////////////////////////////////////////////////////
 
 function showGallery() {
     document.querySelector('.editor-container').classList.add('hidden')
     document.querySelector('.gallery-container').classList.remove('hidden')
     document.querySelector('.gallery-link').classList.add('active')
-    document.querySelector('.gallery-h1').classList.remove('hidden')
-}
-
-function onAddLine() {
-    addLine()
-    renderMeme()
-}
-
-function onSwitchLine() {
-    switchLine()
-    renderMeme()
+    document.querySelector('.gallery-header').classList.remove('hidden')
 }
 
 function toggleMenu() {
@@ -235,12 +260,12 @@ function getEvPos(ev) {
 
 function resizeCanvas() {
     if (window.innerWidth < 600) {
-        gElCanvas.width = 250
-        gElCanvas.height = 250
-        renderMeme()
+        gElCanvas.width = 350
+        gElCanvas.height = 350
+        DrawMeme()
     } else {
         gElCanvas.width = 500
         gElCanvas.height = 500
-        renderMeme()
+        DrawMeme()
     }
 }

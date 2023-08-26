@@ -42,6 +42,19 @@
     .gallery-container {
         grid-template-columns: 1fr;
     }
+
+    .random-meme-btn,
+    .saved-meme-btn {
+        font-size: 10px;
+    }
+
+    .main-layout>*:not(.full) {
+        grid-column: 1 / -1;
+    }
+
+    .main-layout>*.full {
+        grid-column: 1/-1;
+    }
 }
 
 /* 550px */
@@ -54,9 +67,16 @@
 
 /* SMALL */
 @media (min-width: 660px) {
+    .main-layout>*:not(.full) {
+        grid-column: 2;
+    }
+
+    .main-layout>*.full {
+        grid-column: 1/-1;
+    }
 
     .gallery-h1 {
-        font-size: 6em;
+        font-size: 4em;
     }
 
     .main-layout {

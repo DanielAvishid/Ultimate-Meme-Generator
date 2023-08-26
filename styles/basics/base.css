@@ -64,7 +64,7 @@ select::-ms-expand {
 /* buttons */
 
 .btn {
-    max-width: 50px;
+    max-width: fit-content;
     min-height: 50px;
     max-height: 50px;
     letter-spacing: 0.03em;

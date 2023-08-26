@@ -23,7 +23,7 @@
     </header>
     <section class="editor-container grid gap15 hidden">
         <div class="canvas-container">
-            <canvas width="200" height="200">
+            <canvas class="main-canvas" width="250" height="250">
             </canvas>
         </div>
         <div class="tools-container border grid gap15">
@@ -87,18 +87,35 @@
                     </div>
                 </div>
             </div>
-            <div class="option-container border">
-                <a href="#" onclick="downloadCanvas(this)" download="file-name">Download</a>
-                <a href="#" onclick="downloadCanvas(this)" download="file-name">Share</a>
+            <div class="option-container flex space-between align-center  border">
+                <a class="btn" href="#" onclick="downloadCanvas(this)" download="file-name">Download</a>
+                <a class="btn" href="#" onclick="downloadCanvas(this)" download="file-name">Share</a>
+                <a class="btn" href="#" onclick="onSaveMeme(this)">Save</a>
             </div>
     </section>
-    <h1 class="gallery-h1">Select Image</h1>
-    <section class="gallery-container grid"></section>
+    <div class="gallery-header">
+        <div class="search-category">
+
+        </div>
+        <h1 class="gallery-h1">Select Image</h1>
+        <div class="grid flow-column">
+            <button class="btn random-meme-btn" onclick="onRandomMeme()">Random-Meme</button>
+            <button class="btn saved-meme-btn" onclick="showGallery()">Saved gallery</button>
+        </div>
+    </div>
+    <section class="gallery-container grid">
+
+    </section>
+
+    <section class="saved-container grid">
+    </section>
 
     <script src="https://kit.fontawesome.com/a753023b7e.js" crossorigin="anonymous"></script>
+    <script src="js/util.service.js"></script>
     <script src="js/MemeService.js"></script>
     <script src="js/memeController.js"></script>
     <script src="js/galleryController.js"></script>
+    <script src="js/savedMemesController.js"></script>
 </body>
 
 </html>
