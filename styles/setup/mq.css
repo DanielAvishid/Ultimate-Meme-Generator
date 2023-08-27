@@ -5,6 +5,14 @@
         min-height: 70px;
     }
 
+    .logo {
+        margin-inline-start: 20px;
+    }
+
+    .btn-toggle-menu {
+        margin-inline-end: 20px;
+    }
+
     .main-header .main-nav {
         position: fixed;
         top: 70px;
@@ -40,6 +48,7 @@
     }
 
     .gallery-container {
+        min-width: 90%;
         grid-template-columns: 1fr;
     }
 
@@ -75,10 +84,6 @@
         grid-column: 1/-1;
     }
 
-    .gallery-h1 {
-        font-size: 4em;
-    }
-
     .main-layout {
         grid-template-columns: minmax(20px, 1fr) minmax(auto, var(--s)) minmax(20px, 1fr);
     }
@@ -105,6 +110,10 @@
 
     .editor-container {
         grid-auto-flow: column;
+    }
+
+    .gallery-h1 {
+        font-size: 4em;
     }
 
 }

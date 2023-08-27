@@ -1,7 +1,5 @@
 'use strict'
 
-renderGallery()
-
 function renderGallery() {
     const gallery = getImgs()
     let strHTML = gallery.map(img =>

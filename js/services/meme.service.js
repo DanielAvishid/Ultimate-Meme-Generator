@@ -29,14 +29,14 @@ var gLinesExample = [
     _createLine(250, 100, 'Can we replace JS: NO!', '#000000', '#ffc0cb', 'impact', 30),
 ]
 
-var gY = 300
+var gY = 250
 
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
-        _createLine(250, 100, 'Enter Text', '#000000', '#ffc0cb', 'impact', 30),
-        _createLine(250, 200, 'Enter Text', '#000000', '#ff0000', 'impact', 30),
+        _createLine(250, 50, 'Enter Text', '#000000', '#ffc0cb', 'impact', 40),
+        _createLine(250, 150, 'Enter Text', '#000000', '#ff0000', 'impact', 40),
     ]
 }
 
@@ -54,17 +54,11 @@ function saveMeme() {
     saveToStorage('savedMemesDB', savedMemes)
 }
 
-function isLineClicked(clickedPos) {
-    const lines = getLines()
-    const clickedLine = lines.find(line => clickedPos.x > line.location.minX && clickedPos.x < line.location.maxX && clickedPos.y > line.location.minY && clickedPos.y < line.location.maxY)
-    if (!clickedLine) return false
-    const clickedLineIdx = lines.findIndex(line => line === clickedLine)
-    setSelectedLine(clickedLineIdx)
-    document.querySelector('.txt-input').value = clickedLine.txt
-    document.querySelector('.stroke-color-input').value = clickedLine.strokeColor
-    document.querySelector('.fill-color-input').value = clickedLine.fillColor
-    document.querySelector('.select-family').value = clickedLine.fontFamily
-    return true
+function resetLines() {
+    gMeme.lines = [
+        _createLine(250, 50, 'Enter Text', '#000000', '#ffc0cb', 'impact', 40),
+        _createLine(250, 150, 'Enter Text', '#000000', '#ff0000', 'impact', 40),
+    ]
 }
 
 function setLineTxt(txt) {
@@ -94,9 +88,10 @@ function setLineSelectPos(x, y, size, width, line) {
 }
 
 function addLine() {
-    const newLine = _createLine(250, gY)
+    const newLine = _createLine(250, gY, 'Enter Text', '#000000', '#ffff00', 'impact', 40)
     gY += 100
     gMeme.lines.push(newLine)
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
 function _createLine(x, y, txt = 'Enter txt here', strokeColor = '#000000', fillColor = '#ffff00', fontFamily = 'impact', size = 30, isDrag = false) {
@@ -150,17 +145,23 @@ function lineMoveDown() {
 
 function lineAlignLeft() {
     const selectedLine = getSelectedLine()
-    selectedLine.pos.x = 150
+    const lineWidth = getMeasureTextWidth(selectedLine.txt)
+    selectedLine.pos.x = 20 + (lineWidth / 2)
 }
 
 function lineAlignCenter() {
     const selectedLine = getSelectedLine()
-    selectedLine.pos.x = 250
+    const elCanvas = getCanvas()
+    if (elCanvas.width === 350) selectedLine.pos.x = 175
+    else if (elCanvas.width === 500) selectedLine.pos.x = 250
 }
 
 function lineAlignRight() {
     const selectedLine = getSelectedLine()
-    selectedLine.pos.x = 350
+    const lineWidth = getMeasureTextWidth(selectedLine.txt)
+    const elCanvas = getCanvas()
+    if (elCanvas.width === 350) selectedLine.pos.x = 330 - (lineWidth / 2)
+    else if (elCanvas.width === 500) selectedLine.pos.x = 480 - (lineWidth / 2)
 }
 
 function increaseFontSize() {

@@ -11,10 +11,15 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 function onInit() {
     gElCanvas = document.querySelector('.main-canvas')
     gCtx = gElCanvas.getContext('2d')
+    renderGallery()
     addMouseListeners()
     addTouchListeners()
     window.addEventListener('resize', resizeCanvas)
     DrawMeme()
+}
+
+function getCanvas() {
+    return gElCanvas
 }
 
 function addMouseListeners() {
@@ -122,10 +127,14 @@ function drawText(x, y, txt, size, strokeColor, fillColor, fontFamily, line) {
 }
 
 function drawRect(x, y, txt, size) {
-    const width = gCtx.measureText(txt).width
+    const width = getMeasureTextWidth(txt)
     gCtx.lineWidth = 3
     gCtx.strokeStyle = 'black'
     gCtx.strokeRect(x - width / 2 - 10, y - size / 2 - 10, width + 20, size + 20)
+}
+
+function getMeasureTextWidth(txt) {
+    return gCtx.measureText(txt).width
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -137,6 +146,7 @@ function onChangeStrokeColor(color) {
 
 function onAddLine() {
     addLine()
+    editSelectedLine()
     DrawMeme()
 }
 
@@ -213,8 +223,10 @@ function onSetFontFamily(fontFamily) {
 function onImgSelect(elBtn) {
     const imgId = elBtn.dataset.imageId
     setSelectedImg(imgId)
+    resetLines()
     resizeCanvas()
     DrawMeme()
+    editSelectedLine()
     document.querySelector('.editor-container').classList.remove('hidden')
     document.querySelector('.gallery-container').classList.add('hidden')
     document.querySelector('.gallery-link').classList.remove('active')
@@ -227,6 +239,7 @@ function onRandomMeme() {
     gMeme.lines = newLines
     resizeCanvas()
     DrawMeme()
+    editSelectedLine()
     document.querySelector('.editor-container').classList.remove('hidden')
     document.querySelector('.gallery-container').classList.add('hidden')
     document.querySelector('.gallery-link').classList.remove('active')
@@ -279,4 +292,22 @@ function resizeCanvas() {
         gElCanvas.height = 500
         DrawMeme()
     }
+}
+
+function isLineClicked(clickedPos) {
+    const lines = getLines()
+    const selectedLine = lines.find(line => clickedPos.x > line.location.minX && clickedPos.x < line.location.maxX && clickedPos.y > line.location.minY && clickedPos.y < line.location.maxY)
+    if (!selectedLine) return false
+    const selectedLineIdx = lines.findIndex(line => line === selectedLine)
+    setSelectedLine(selectedLineIdx)
+    editSelectedLine(selectedLine)
+    return true
+}
+
+function editSelectedLine() {
+    const selectedLine = getSelectedLine()
+    document.querySelector('.txt-input').value = selectedLine.txt
+    document.querySelector('.stroke-color-input').value = selectedLine.strokeColor
+    document.querySelector('.fill-color-input').value = selectedLine.fillColor
+    document.querySelector('.select-family').value = selectedLine.fontFamily
 }

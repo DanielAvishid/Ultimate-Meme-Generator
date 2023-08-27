@@ -22,6 +22,7 @@ h6 {
 }
 
 canvas {
+    cursor: grab;
     background-color: white;
     border: 1px solid black;
     box-shadow: 10px 10px 5px black;
@@ -65,8 +66,10 @@ select::-ms-expand {
 
 .btn {
     max-width: fit-content;
+    min-width: 50px;
     min-height: 50px;
     max-height: 50px;
+    line-height: 25px;
     letter-spacing: 0.03em;
     font-weight: 600;
     color: var(--clrPrimary-2);

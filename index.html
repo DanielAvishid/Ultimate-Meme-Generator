@@ -15,6 +15,7 @@
             <div class="main-nav">
                 <ul class="clean-list grid flow-column">
                     <li><a href="#" class="gallery-link active" onclick="showGallery()">Gallery</a></li>
+                    <li><a href="#">Memes</a></li>
                     <li><a href="#">About</a></li>
                 </ul>
             </div>
@@ -99,8 +100,7 @@
         </div>
         <h1 class="gallery-h1">Select Image</h1>
         <div class="grid flow-column">
-            <button class="btn random-meme-btn" onclick="onRandomMeme()">Random-Meme</button>
-            <!-- <button class="btn saved-meme-btn hidden" onclick="showSavedGallery()">Saved gallery</button> -->
+            <button class="btn random-meme-btn" onclick="onRandomMeme()">I'm flexible</button>
         </div>
     </div>
     <section class="gallery-container grid">
@@ -111,11 +111,11 @@
     </section>
 
     <script src="https://kit.fontawesome.com/a753023b7e.js" crossorigin="anonymous"></script>
-    <script src="js/util.service.js"></script>
-    <script src="js/MemeService.js"></script>
-    <script src="js/memeController.js"></script>
-    <script src="js/galleryController.js"></script>
-    <script src="js/savedMemesController.js"></script>
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/meme.service.js"></script>
+    <script src="js/controller/gallery.controller.js"></script>
+    <script src="js/controller/saved.controller.js"></script>
+    <script src="js/controller/meme.controller.js"></script>
 </body>
 
 </html>

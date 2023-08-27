@@ -1,6 +1,5 @@
 .tools-container .txt-input {
-    grid-template-rows: repeat(4, 1fr);
-    min-height: 25px;
+    min-height: 30px;
     max-height: 50px;
 }
 
