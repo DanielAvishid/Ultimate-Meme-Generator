@@ -1,26 +1,26 @@
 @font-face {
     font-family: eurofurence;
-    src: url("../../fonts/Eurofurence/eurof55.ttf");
+    src: url("../fonts/Eurofurence/eurof55.ttf");
 }
 
 @font-face {
     font-family: lato;
-    src: url("../../fonts/Lato/Lato-Regular.ttf");
+    src: url("../fonts/Lato/Lato-Regular.ttf");
 }
 
 @font-face {
     font-family: 'black-ops';
-    src: url("../../fonts/black-ops/BlackOpsOne-Regular.ttf");
+    src: url("../fonts/black-ops/BlackOpsOne-Regular.ttf");
 }
 
 @font-face {
     font-family: 'russo-one';
-    src: url("../../fonts/russoOne/RussoOne-Regular.ttf");
+    src: url("../fonts/russoOne/RussoOne-Regular.ttf");
 }
 
 /* FONT AWESOME */
 
 @font-face {
     font-family: fa;
-    src: url("../../fonts/fa/fa-brands-400.ttf");
+    src: url("../fonts/fa/fa-brands-400.ttf");
 }
