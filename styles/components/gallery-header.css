@@ -20,7 +20,7 @@
     line-height: 2em;
     color: transparent;
     -webkit-text-stroke: 1px var(--clrSecondary1);
-    background: url(../images/back_black.png);
+    background: url(../../img/back_black.png);
     -webkit-background-clip: text;
     background-position: 0 0;
     animation: back 30s linear infinite;
