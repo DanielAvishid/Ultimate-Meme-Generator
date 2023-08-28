@@ -303,6 +303,7 @@ function onRandomMeme() {
     const randomLine = createRandomMeme()
     const newLines = [randomLine]
     gMeme.lines = newLines
+    gMeme.selectedLineIdx = 0
     resizeCanvas()
     DrawMeme()
     editSelectedLine()
