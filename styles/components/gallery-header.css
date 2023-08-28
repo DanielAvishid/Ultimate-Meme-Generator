@@ -34,8 +34,8 @@
     margin-inline-start: 0.3125em;
     gap: 1em;
     padding: 1em;
-    text-align: start;
-    width: 50%;
+    text-align: center;
+    width: 100%;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
 }
