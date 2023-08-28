@@ -1,13 +1,12 @@
 .main-layout {
     display: grid;
-    grid-template-columns: 5px 1fr 5px;
-}
-
-/* .editor-layout {
-    display: grid;
-    grid-template-columns: 10px 1fr 10px;
+    grid-template-columns: 20px 1fr 20px;
 }
 
 .main-layout>*:not(.full) {
     grid-column: 2;
-} */
+}
+
+.main-layout>*.full {
+    grid-column: 1/-1;
+}

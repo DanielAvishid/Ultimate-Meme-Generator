@@ -1,15 +1,15 @@
 'use strict'
 
 var gImgs = [
-    { id: 1, url: 'images/1.jpg', keywords: ['funny', 'cat'] },
-    { id: 2, url: 'images/2.jpg', keywords: ['funny'] },
-    { id: 3, url: 'images/3.jpg', keywords: ['funny'] },
-    { id: 4, url: 'images/4.jpg', keywords: ['funny'] },
-    { id: 5, url: 'images/5.jpg', keywords: ['funny'] },
+    { id: 1, url: 'images/1.jpg', keywords: ['funny'] },
+    { id: 2, url: 'images/2.jpg', keywords: ['funny', 'cute'] },
+    { id: 3, url: 'images/3.jpg', keywords: ['funny', 'cute', 'baby'] },
+    { id: 4, url: 'images/4.jpg', keywords: ['funny', 'cute', 'cat'] },
+    { id: 5, url: 'images/5.jpg', keywords: ['funny', 'cute', 'baby'] },
     { id: 6, url: 'images/6.jpg', keywords: ['funny'] },
-    { id: 7, url: 'images/7.jpg', keywords: ['funny'] },
+    { id: 7, url: 'images/7.jpg', keywords: ['funny', 'baby'] },
     { id: 8, url: 'images/8.jpg', keywords: ['funny'] },
-    { id: 9, url: 'images/9.jpg', keywords: ['funny'] },
+    { id: 9, url: 'images/9.jpg', keywords: ['funny', 'baby'] },
     { id: 10, url: 'images/10.jpg', keywords: ['funny'] },
     { id: 11, url: 'images/11.jpg', keywords: ['funny'] },
     { id: 12, url: 'images/12.jpg', keywords: ['funny'] },
@@ -35,21 +35,30 @@ var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
-        _createLine(250, 50, 'Enter Text', '#000000', '#ffc0cb', 'impact', 40),
-        _createLine(250, 150, 'Enter Text', '#000000', '#ff0000', 'impact', 40),
+        _createLine(0, 50, 'Enter Text', '#000000', '#ffc0cb', 'impact', 40),
+        _createLine(0, 150, 'Enter Text', '#000000', '#ff0000', 'impact', 40),
     ]
 }
 
 var gSelectedPos
 
-var gKeywordSearchCountMap = { 'funny': 0, 'cat': 0, 'baby': 0 }
+var gKeywordSearchCountMap = { 'funny': 15, 'cat': 15, 'baby': 15, 'cute': 15 }
 
 function getKeywordSearchMap() {
     return gKeywordSearchCountMap
 }
 
-function saveMeme() {
-    const savedMemes = loadFromStorage('savedMemesDB')
+function setSavedMemes() {
+    let savedMemes = loadFromStorage('savedMemesDB')
+    const elCanvas = getCanvas()
+    if (elCanvas.width === 250) gMeme.lines.forEach(line => {
+        line.pos.x *= 2
+        line.pos.y *= 2
+    })
+    else if (elCanvas.width === 350) gMeme.lines.forEach(line => {
+        line.pos.x *= 1.4285714285
+        line.pos.y *= 1.4285714285
+    })
     savedMemes.push(gMeme)
     saveToStorage('savedMemesDB', savedMemes)
 }
@@ -95,7 +104,7 @@ function addLine() {
 }
 
 function _createLine(x, y, txt = 'Enter txt here', strokeColor = '#000000', fillColor = '#ffff00', fontFamily = 'impact', size = 30, isDrag = false) {
-    const newLine = {
+    return {
         pos: { x: x, y: y },
         txt,
         strokeColor,
@@ -104,7 +113,6 @@ function _createLine(x, y, txt = 'Enter txt here', strokeColor = '#000000', fill
         size: size,
         isDrag
     }
-    return newLine
 }
 
 function getImgById(imgId) {
@@ -152,15 +160,24 @@ function lineAlignLeft() {
 function lineAlignCenter() {
     const selectedLine = getSelectedLine()
     const elCanvas = getCanvas()
-    if (elCanvas.width === 350) selectedLine.pos.x = 175
+    if (elCanvas.width === 250) selectedLine.pos.x = 125
+    else if (elCanvas.width === 350) selectedLine.pos.x = 175
     else if (elCanvas.width === 500) selectedLine.pos.x = 250
+}
+
+function linesAlignCenter() {
+    gMeme.lines.forEach((line, idx) => {
+        setSelectedLine(idx)
+        lineAlignCenter()
+    })
 }
 
 function lineAlignRight() {
     const selectedLine = getSelectedLine()
     const lineWidth = getMeasureTextWidth(selectedLine.txt)
     const elCanvas = getCanvas()
-    if (elCanvas.width === 350) selectedLine.pos.x = 330 - (lineWidth / 2)
+    if (elCanvas.width === 250) selectedLine.pos.x = 230 - (lineWidth / 2)
+    else if (elCanvas.width === 350) selectedLine.pos.x = 330 - (lineWidth / 2)
     else if (elCanvas.width === 500) selectedLine.pos.x = 480 - (lineWidth / 2)
 }
 
@@ -210,6 +227,10 @@ function setFontFamily(fontFamily) {
             selectedLine.fontFamily = `'Brush Script MT', cursive`
             break
     }
+}
+
+function setLines(lines) {
+    gMeme.lines = lines
 }
 
 function setSelectedLine(lineIdx) {

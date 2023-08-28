@@ -1,0 +1,47 @@
+.gallery-header .filter-container input {
+    background-color: var(--clrSecondary-1);
+}
+
+.gallery-header .filter-container input {
+    font-size: 1.5625em;
+    margin: auto;
+    width: 96%;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+.gallery-header .gallery-options .gallery-h1 {
+    display: none;
+    text-align: center;
+    font-family: 'russo-one', sans-serif;
+    font-size: 4em;
+    line-height: 2em;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--clrSecondary1);
+    background: url(/images/back_black.png);
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation: back 30s linear infinite;
+}
+
+.gallery-header .gallery-options .buttons-container {
+    margin-block-end: 0.3125em;
+}
+
+.gallery-header .category-container {
+    margin-inline-start: 0.3125em;
+    gap: 1em;
+    padding: 1em;
+    text-align: start;
+    width: 50%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+@keyframes back {
+    100% {
+        background-position: 2000px 0;
+    }
+}

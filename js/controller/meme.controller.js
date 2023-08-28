@@ -9,13 +9,44 @@ let gY2 = 100
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 function onInit() {
+    const savedMemes = loadFromStorage('savedMemesDB')
+    if (!savedMemes) {
+        saveToStorage('savedMemesDB', [])
+    }
+    renderGallery()
+    renderSavedMemes(savedMemes)
     gElCanvas = document.querySelector('.main-canvas')
     gCtx = gElCanvas.getContext('2d')
-    renderGallery()
     addMouseListeners()
     addTouchListeners()
     window.addEventListener('resize', resizeCanvas)
     DrawMeme()
+}
+
+function onCategoryClick(elCategory) {
+    const mapCategoryCount = getKeywordSearchMap()
+    switch (elCategory.innerText) {
+        case 'Funny':
+            if (mapCategoryCount.funny > 30) return
+            mapCategoryCount.funny += 3
+            elCategory.style.fontSize = mapCategoryCount.funny + 'px'
+            break
+        case 'Cat':
+            if (mapCategoryCount.cat > 30) return
+            mapCategoryCount.cat += 3
+            elCategory.style.fontSize = mapCategoryCount.cat + 'px'
+            break
+        case 'Baby':
+            if (mapCategoryCount.baby > 30) return
+            mapCategoryCount.baby += 3
+            elCategory.style.fontSize = mapCategoryCount.baby + 'px'
+            break
+        case 'Cute':
+            if (mapCategoryCount.cute > 30) return
+            mapCategoryCount.cute += 3
+            elCategory.style.fontSize = mapCategoryCount.cute + 'px'
+            break
+    }
 }
 
 function getCanvas() {
@@ -139,6 +170,24 @@ function getMeasureTextWidth(txt) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
+function onCanvasClick(elCanvas) {
+    const savedMemeIdx = elCanvas.dataset.meme - 1
+    const savedMemes = loadFromStorage('savedMemesDB')
+    const currMeme = savedMemes[savedMemeIdx]
+    const currImg = currMeme.selectedImgId
+    setLines(currMeme.lines)
+    setSelectedImg(currImg)
+    resizeCanvas()
+    DrawMeme()
+    editSelectedLine()
+    document.querySelector('.main-editor-container').classList.remove('hidden')
+    document.querySelector('.gallery-container').classList.add('hidden')
+    document.querySelector('.saved-container').classList.add('hidden')
+    document.querySelector('.gallery-link').classList.remove('active')
+    document.querySelector('.gallery-header').classList.add('hidden')
+    document.querySelector('.gallery-header').classList.add('hidden')
+}
+
 function onChangeStrokeColor(color) {
     setLineStrokeColor(color)
     DrawMeme()
@@ -200,8 +249,22 @@ function onLineDelete() {
     DrawMeme()
 }
 
+function onDeleteSavedMemes() {
+    localStorage.clear()
+    location.href = "index.html"
+}
+
 function onSaveMeme() {
-    saveMeme()
+    setSavedMemes()
+    flashMsg('Meme saved')
+}
+
+function flashMsg(msg) {
+    const elMsg = document.querySelector('.user-msg')
+
+    elMsg.innerText = msg
+    elMsg.classList.add('open')
+    setTimeout(() => elMsg.classList.remove('open'), 3000)
 }
 
 function onDownloadCanvas(elLink) {
@@ -225,11 +288,14 @@ function onImgSelect(elBtn) {
     setSelectedImg(imgId)
     resetLines()
     resizeCanvas()
+    linesAlignCenter()
     DrawMeme()
     editSelectedLine()
-    document.querySelector('.editor-container').classList.remove('hidden')
+    document.querySelector('.main-editor-container').classList.remove('hidden')
     document.querySelector('.gallery-container').classList.add('hidden')
+    document.querySelector('.saved-container').classList.add('hidden')
     document.querySelector('.gallery-link').classList.remove('active')
+    document.querySelector('.gallery-header').classList.add('hidden')
     document.querySelector('.gallery-header').classList.add('hidden')
 }
 
@@ -240,26 +306,45 @@ function onRandomMeme() {
     resizeCanvas()
     DrawMeme()
     editSelectedLine()
-    document.querySelector('.editor-container').classList.remove('hidden')
+    document.querySelector('.main-editor-container').classList.remove('hidden')
     document.querySelector('.gallery-container').classList.add('hidden')
     document.querySelector('.gallery-link').classList.remove('active')
+    document.querySelector('.gallery-header').classList.add('hidden')
+    document.querySelector('.saved-container').classList.add('hidden')
+    document.querySelector('.delete-saved-memes').classList.add('hidden')
     document.querySelector('.gallery-header').classList.add('hidden')
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 function showGallery() {
-    document.querySelector('.editor-container').classList.add('hidden')
+    document.querySelector('.main-editor-container').classList.add('hidden')
     document.querySelector('.gallery-container').classList.remove('hidden')
     document.querySelector('.gallery-link').classList.add('active')
+    document.querySelector('.saved-link').classList.remove('active')
     document.querySelector('.gallery-header').classList.remove('hidden')
+    document.querySelector('.saved-container').classList.add('hidden')
+    document.querySelector('.delete-saved-memes').classList.add('hidden')
+    document.querySelector('.gallery-header').classList.remove('hidden')
+    document.querySelector('.filter-container').classList.remove('hidden')
 }
 
-function showSavedGallery() {
-    document.querySelector('.editor-container').classList.add('hidden')
+function showSavedMemes() {
+    const savedMemes = loadFromStorage('savedMemesDB')
+    if (!savedMemes || !savedMemes.length) {
+        flashMsg('No saved Memes')
+        return
+    }
+    renderSavedMemes(savedMemes)
+    document.querySelector('.main-editor-container').classList.add('hidden')
     document.querySelector('.gallery-container').classList.add('hidden')
     document.querySelector('.gallery-link').classList.remove('active')
+    document.querySelector('.saved-link').classList.add('active')
     document.querySelector('.gallery-header').classList.remove('hidden')
+    document.querySelector('.saved-container').classList.remove('hidden')
+    document.querySelector('.delete-saved-memes').classList.remove('hidden')
+    document.querySelector('.gallery-header').classList.remove('hidden')
+    document.querySelector('.filter-container').classList.add('hidden')
 }
 
 function toggleMenu() {
@@ -283,9 +368,13 @@ function getEvPos(ev) {
 }
 
 function resizeCanvas() {
-    if (window.innerWidth < 600) {
+    if (window.innerWidth < 600 && window.innerWidth > 400) {
         gElCanvas.width = 350
         gElCanvas.height = 350
+        DrawMeme()
+    } else if (window.innerWidth < 400) {
+        gElCanvas.width = 250
+        gElCanvas.height = 250
         DrawMeme()
     } else {
         gElCanvas.width = 500

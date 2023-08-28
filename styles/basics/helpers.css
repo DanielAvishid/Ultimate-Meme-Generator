@@ -20,6 +20,11 @@
     justify-content: space-between;
 }
 
+.grid.space-evenly {
+    justify-content: space-evenly;
+}
+
+
 .grid.gap50 {
     gap: 50px;
 }
@@ -92,17 +97,35 @@
     text-align: center;
 }
 
-/* Border helpers */
+.canvas-container {
+    text-align: center;
+}
 
-.border {
+/* border helpers */
+
+.border-padding {
+    padding: 15px;
+    border: 5px solid var(--clrSecondary);
+}
+
+.border-padding-option {
     padding: 15px;
     border: 5px solid var(--clrSecondary);
 }
 
 /* Margin helpers */
 
-.mb-50 {
-    margin-block-end: 50px;
+.empty10-line {
+    background-color: #0F4C75;
+    height: 10px;
+}
+
+.mb-20 {
+    margin-block-end: 20px;
+}
+
+.mt-10 {
+    margin-block-start: 30px;
 }
 
 .mr-3 {

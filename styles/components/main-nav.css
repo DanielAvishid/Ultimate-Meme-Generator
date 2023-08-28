@@ -1,0 +1,30 @@
+.main-nav ul li {
+    border-inline-start: 2px solid var(--clrPrimary2);
+}
+
+.main-nav ul li:last-of-type {
+    border-inline-end: 2px solid var(--clrPrimary2);
+}
+
+.main-nav a {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+    min-width: var(--headerHeight);
+    min-height: var(--headerHeight);
+
+    transition: box-shadow 0.2s;
+    will-change: box-shadow;
+}
+
+.main-nav a:hover {
+    box-shadow: inset 0px -6px 0 var(--clrSecondary);
+}
+
+.main-nav a.active {
+    font-weight: 700;
+    color: var(--clrSecondary);
+    box-shadow: inset 0px -6px 0 var(--clrSecondary);
+    cursor: default;
+}

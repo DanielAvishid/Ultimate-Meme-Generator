@@ -9,113 +9,154 @@
 </head>
 
 <body class="main-layout" onload="onInit()">
-    <header class="main-header main-layout full mb-50">
-        <nav class="main-nav-container grid space-between align-center flow-column">
-            <div class="logo">Logo</div>
-            <div class="main-nav">
+    <header class="main-header main-layout full mb-20">
+        <div class="nav-container grid space-between align-center flow-column">
+            <div class="logo">Meme-Generator</div>
+            <nav class="main-nav">
                 <ul class="clean-list grid flow-column">
-                    <li><a href="#" class="gallery-link active" onclick="showGallery()">Gallery</a></li>
-                    <li><a href="#">Memes</a></li>
-                    <li><a href="#">About</a></li>
+                    <li>
+                        <a href="#" class="gallery-link active" onclick="showGallery()">Gallery</a>
+                    </li>
+                    <li>
+                        <a href="#" class="saved-link" onclick="showSavedMemes()">Memes</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
                 </ul>
-            </div>
+            </nav>
             <button class="btn-toggle-menu" onclick="toggleMenu()">☰</button>
-        </nav>
+        </div>
+        <div class="empty10-line main-layout full">
+            <div></div>
+        </div>
     </header>
-    <section class="editor-container grid gap15 hidden">
-        <div class="canvas-container">
-            <canvas class="main-canvas" width="250" height="250">
-            </canvas>
-        </div>
-        <div class="tools-container border grid gap15">
-            <input class="txt-input border" type="text" oninput="onTxtChange(this.value)">
-            <div class="option-container flex reverse space-between border">
-                <div class="flex">
-                    <button class="btn mr-3" onclick="onSwitchLine()"><i class="fa-solid fa-repeat"></i></button>
-                    <button class="btn mr-3" onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
-                    <button class="btn" onclick="onLineDelete()"><i class="fa-solid fa-trash"></i></button>
-                </div>
-                <div class="flex">
-                    <button class="btn mr-3" onclick="onLineMoveUp()"><i class="fa-solid fa-chevron-up"></i></button>
-                    <button class="btn mr-3" onclick="onLineMoveDown()"><i
-                            class="fa-solid fa-chevron-down"></i></button>
-                </div>
-            </div>
-            <div class="options2-container grid border">
-                <div class="flex space-between">
-                    <div>
-                        <button class="btn" onclick="onFontIncreaseLine()"><i class="fa-solid fa-font"></i>+</button>
-                        <button class="btn" onclick="onFontDecreaseLine()"><i class="fa-solid fa-font"></i>-</button>
-                    </div>
-                    <div>
-                        <button class="btn" onclick="onLineAlignLeft()"><i class="fa-solid fa-align-left"></i></button>
-                        <button class="btn" onclick="onLineAlignCenter()"><i
-                                class="fa-solid fa-align-center"></i></button>
-                        <button class="btn" onclick="onLineAlignRight()"><i
-                                class="fa-solid fa-align-right"></i></button>
-                    </div>
-                </div>
-                <div class="flex space-between align-center">
-                    <div class="colors-container flex gap5">
-                        <div class="flex col align-center">
-                            <span>Stroke</span>
-                            <input class="stroke-color-input" value="#000000" type="color"
-                                onchange="onChangeStrokeColor(this.value)">
-                        </div>
-                        <div class="flex col align-center">
-                            <span>Fill</span>
-                            <input class="fill-color-input" value="#000000" type="color"
-                                onchange="onChangeFillColor(this.value)">
-                        </div>
-                    </div>
-                    <div class="select-container">
-                        <div class="select">
-                            <select class="select-family" onchange="onSetFontFamily(this.value)">
-                                <option class="op-impact" value="impact">Impact</option>
-                                <option class="op-arial" value="Arial, sans-serif">Arial</option>
-                                <option class="op-verdana" value="Verdana, sans-serif">Verdana</option>
-                                <option class="op-tahoma" value="Tahoma, sans-serif">Tahoma</option>
-                                <option class="op-trebuchet-ms" value="`'Trebuchet MS', sans-serif`">Trebuchet-MS
-                                </option>
-                                <option class="op-times" value="'Times New Roman', Times, serif">Times new roman
-                                </option>
-                                <option class="op-georgia" value="'Georgia, serif'">Georgia</option>
-                                <option class="op-garamond" value="garamond">Garamond</option>
-                                <option class="op-courier-new" value="'Courier New', monospace">Courier-NEW</option>
-                                <option class="op-brush" value="`'Brush Script MT', cursive`">Brush</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="option-container flex space-between align-center  border">
-                <a class="btn" href="#" onclick="onDownloadCanvas(this)" download="file-name">Download</a>
-                <a class="btn" href="#">Share</a>
-                <a class="btn" href="#" onclick="onSaveMeme(this)">Save</a>
-            </div>
-    </section>
-    <div class="gallery-header">
-        <div class="search-category">
 
+    <main class="main-editor-container main-layout full hidden">
+        <section class="editor-container grid space-between gap15">
+            <div class="canvas-container">
+                <canvas class="main-canvas" width="250" height="250">
+                </canvas>
+            </div>
+            <div class="editor-table-container grid flow-column gap15">
+                <div class="input-container">
+                    <input class="txt-input border-padding-option" type="text" oninput="onTxtChange(this.value)">
+                </div>
+                <div class="options-container flex reverse space-between border-padding-option">
+                    <div class="flex">
+                        <button class="btn mr-3" onclick="onSwitchLine()"><i class="fa-solid fa-repeat"></i></button>
+                        <button class="btn mr-3" onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
+                        <button class="btn" onclick="onLineDelete()"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                    <div class="flex">
+                        <button class="btn mr-3" onclick="onLineMoveUp()"><i
+                                class="fa-solid fa-chevron-up"></i></button>
+                        <button class="btn mr-3" onclick="onLineMoveDown()"><i
+                                class="fa-solid fa-chevron-down"></i></button>
+                    </div>
+                </div>
+                <div class="options-container font-options grid border-padding-option">
+                    <div class="flex space-between">
+                        <div>
+                            <button class="btn" onclick="onFontIncreaseLine()">
+                                <i class="fa-solid fa-font"></i>+
+                            </button>
+                            <button class="btn" onclick="onFontDecreaseLine()">
+                                <i class="fa-solid fa-font"></i>-
+                            </button>
+                        </div>
+                        <div>
+                            <button class="btn" onclick="onLineAlignLeft()">
+                                <i class="fa-solid fa-align-left"></i>
+                            </button>
+                            <button class="btn" onclick="onLineAlignCenter()">
+                                <i class="fa-solid fa-align-center"></i>
+                            </button>
+                            <button class="btn" onclick="onLineAlignRight()">
+                                <i class="fa-solid fa-align-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex space-between align-center">
+                        <div class="colors-container flex gap5">
+                            <div class="flex col align-center">
+                                <span>Stroke</span>
+                                <input class="stroke-color-input" value="#000000" type="color"
+                                    onchange="onChangeStrokeColor(this.value)">
+                            </div>
+                            <div class="flex col align-center">
+                                <span>Fill</span>
+                                <input class="fill-color-input" value="#000000" type="color"
+                                    onchange="onChangeFillColor(this.value)">
+                            </div>
+                        </div>
+                        <div class="select-container">
+                            <div class="select">
+                                <select class="select-family" onchange="onSetFontFamily(this.value)">
+                                    <option class="op-impact" value="impact">Impact</option>
+                                    <option class="op-arial" value="Arial, sans-serif">Arial</option>
+                                    <option class="op-verdana" value="Verdana, sans-serif">Verdana</option>
+                                    <option class="op-tahoma" value="Tahoma, sans-serif">Tahoma</option>
+                                    <option class="op-trebuchet-ms" value="`'Trebuchet MS', sans-serif`">Trebuchet-MS
+                                    </option>
+                                    <option class="op-times" value="'Times New Roman', Times, serif">Times new roman
+                                    </option>
+                                    <option class="op-georgia" value="'Georgia, serif'">Georgia</option>
+                                    <option class="op-garamond" value="garamond">Garamond</option>
+                                    <option class="op-courier-new" value="'Courier New', monospace">Courier-NEW</option>
+                                    <option class="op-brush" value="`'Brush Script MT', cursive`">Brush</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="options-container flex space-between align-center border-padding-option">
+                    <a class="btn" href="#" onclick="onDownloadCanvas(this)" download="file-name">Download</a>
+                    <a class="btn" href="#">Share</a>
+                    <a class="btn" href="#" onclick="onSaveMeme(this)">Save</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="gallery-header">
+        <div class="filter-container grid">
+            <div class="input-container">
+                <input class="filter-by-name-input" data-trans="search-input"
+                    onkeyup="onSetFilterByName({name: this.value}, event)" placeholder="Search by category...">
+            </div>
+            <div class="category-container grid flow-column">
+                <span onclick="onCategoryClick(this)">Funny</span>
+                <span onclick="onCategoryClick(this)">Cat</span>
+                <span class="marked" onclick="onCategoryClick(this)">Baby</span>
+                <span class="marked" onclick="onCategoryClick(this)">Cute</span>
+            </div>
         </div>
-        <h1 class="gallery-h1">Select Image</h1>
-        <div class="grid flow-column">
-            <button class="btn random-meme-btn" onclick="onRandomMeme()">I'm flexible</button>
+        <div class="gallery-options flex  space-between">
+            <h1 class="gallery-h1">Select Image</h1>
+            <div class="buttons-container">
+                <button class="btn random-meme-btn" onclick="onRandomMeme()">
+                    I'm flexible
+                </button>
+                <button class="btn delete-saved-memes hidden" onclick="onDeleteSavedMemes()">
+                    Delete Saved Memes
+                </button>
+            </div>
         </div>
     </div>
     <section class="gallery-container grid">
-
     </section>
 
-    <section class="saved-container grid">
+    <section class="saved-container grid hidden">
     </section>
+    <div class="user-msg"></div>
 
     <script src="https://kit.fontawesome.com/a753023b7e.js" crossorigin="anonymous"></script>
     <script src="js/services/util.service.js"></script>
     <script src="js/services/meme.service.js"></script>
+    <script src="js/controller/meme.controller.js"></script>
     <script src="js/controller/gallery.controller.js"></script>
     <script src="js/controller/saved.controller.js"></script>
-    <script src="js/controller/meme.controller.js"></script>
 </body>
 
 </html>

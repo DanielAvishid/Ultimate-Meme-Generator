@@ -1,16 +1,14 @@
 :root {
     /* PALLETE */
-    --clrPrimary3: #1e1e1e;
-    --clrPrimary2: #1B262C;
-    --clrPrimary1: #4f4e4e;
+    --clrPrimary2: #1e1e1e;
+    --clrPrimary1: #1B262C;
     --clrPrimary: #606060;
-    --clrPrimary-1: #818181;
-    --clrPrimary-2: #c2c1c1;
-    --clrPrimary-3: #f8f8f8;
-    --clrPrimary-4: #ffffff;
+    --clrPrimary-1: #c2c1c1;
+    --clrPrimary-2: #f8f8f8;
 
+    --clrSecondary1: #0F4C75;
     --clrSecondary: #3282B8;
-
+    --clrSecondary-1: #BBE1FA;
     /* layout */
     --headerHeight: 100px;
 

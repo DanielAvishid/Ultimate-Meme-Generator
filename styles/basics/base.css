@@ -25,13 +25,15 @@ canvas {
     cursor: grab;
     background-color: white;
     border: 1px solid black;
+
+}
+
+.main-canvas {
     box-shadow: 10px 10px 5px black;
 }
 
 input {
-    /* margin: 0 0 1em; */
-    /* padding: 10px; */
-    font-size: 25px;
+    font-size: 1.5625em;
 }
 
 img {
@@ -39,17 +41,15 @@ img {
 }
 
 a {
-    color: var(--clrPrimary-3);
+    color: var(--clrPrimary-2);
     text-decoration: none;
 }
 
 select {
-    /* Reset Select */
     appearance: none;
     outline: 10px red;
     border: 0;
     box-shadow: none;
-    /* Personalize */
     flex: 1;
     padding: 0 1em;
     color: #fff;
@@ -66,15 +66,14 @@ select::-ms-expand {
 
 .btn {
     max-width: fit-content;
-    min-width: 50px;
-    min-height: 50px;
-    max-height: 50px;
-    line-height: 25px;
+    min-width: 3.125em;
+    min-height: 3.125em;
+    max-height: 3.125em;
     letter-spacing: 0.03em;
     font-weight: 600;
-    color: var(--clrPrimary-2);
+    color: var(--clrSecondary);
     background-color: white;
-    border: 2px solid var(--clrPrimary-2);
+    border: 0.125em solid var(--clrPrimary-1);
     padding: 0.625em 1.25em;
     font-family: inherit;
     cursor: pointer;
@@ -95,4 +94,19 @@ select::-ms-expand {
         /* font-size: 1.3em; */
         scale: 1.15;
     }
+}
+
+.user-msg {
+    position: fixed;
+    bottom: -100px;
+    right: 10px;
+
+    background-color: #111;
+    color: #fff;
+    padding: 10px;
+    transition: bottom .5s;
+}
+
+.user-msg.open {
+    bottom: 10px;
 }

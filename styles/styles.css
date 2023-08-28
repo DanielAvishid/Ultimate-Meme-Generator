@@ -8,13 +8,14 @@
 @import url("basics/helpers.css");
 
 /* COMPONENTS */
-@import url("components/main-header.css");
 @import url("components/editor-container.css");
-@import url("components/tools-container.css");
-@import url("components/canvas-container.css");
-@import url("components/select-container.css");
+@import url("components/editor-table-container.css");
 @import url("components/gallery-container.css");
-@import url("components/gallery-h1.css");
+@import url("components/gallery-header.css");
+@import url("components/main-editor-container.css");
+@import url("components/main-header.css");
+@import url("components/main-nav.css");
+@import url("components/saved-container.css");
 
 /* MEDIA QUERIES */
 @import url("setup/mq.css");

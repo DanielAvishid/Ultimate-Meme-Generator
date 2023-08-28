@@ -1,0 +1,143 @@
+[33mcommit c7ddc8c281138ff78ddb488c3a8aa636be086f94[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Sun Aug 27 15:48:56 2023 +0300
+
+    Version 7.0
+
+[33mcommit 0087f7b278dd94f3c530f1f6377ea14aa3d12ed5[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Sun Aug 27 07:21:05 2023 +0300
+
+    version 6
+
+[33mcommit 40c8a9aeb29162013607d28a025fa6e0effec2da[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Sat Aug 26 19:13:16 2023 +0300
+
+    version 5
+
+[33mcommit e59b881923466bef0466572f61be9dcb49385aed[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Sat Aug 26 18:32:51 2023 +0300
+
+    version 4
+
+[33mcommit 66a3e406f817b60cd89ff8d368e89bf9dcac2e4a[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Fri Aug 25 12:18:23 2023 +0300
+
+    version 3.3
+
+[33mcommit 47a8a2f1afd23259c99befb163fa7fc1eb6f777a[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Fri Aug 25 11:54:39 2023 +0300
+
+    version 3.2
+
+[33mcommit 29b355f6267d0484c474a560046b62d09ab1db20[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Fri Aug 25 11:40:21 2023 +0300
+
+    version 3.1
+
+[33mcommit 6b39ae35de175c761b9b1e0f89b60ded919039e0[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Fri Aug 25 03:04:02 2023 +0300
+
+    version 3.0
+
+[33mcommit a03ac79eaf48f98d89fc8b2c309cf74f3d5e1272[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Thu Aug 24 20:04:22 2023 +0300
+
+    version 1.9
+
+[33mcommit b412d6629901f31d6e80079675bf02e962a7d46b[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Thu Aug 24 19:54:10 2023 +0300
+
+    version 1.3
+
+[33mcommit 980139bb4aaf80f019a462d1cccf08271a6fffb6[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Thu Aug 24 18:25:39 2023 +0300
+
+    version 2.0
+
+[33mcommit efb4e7b370f2e08bb5c2a98eb30b799c61c3769b[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Thu Aug 24 15:53:12 2023 +0300
+
+    version 1.7
+
+[33mcommit 254ec5e74beed2bbe25a1999a1277bd475d5d032[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Thu Aug 24 14:24:25 2023 +0300
+
+    version 1.06
+
+[33mcommit 30cfe10a64b6b655e668ce568b67acf5efff5fa8[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Thu Aug 24 01:18:48 2023 +0300
+
+    version 1.04
+
+[33mcommit f597a7bf7bb16ef14429fa56999075f462194b1f[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Thu Aug 24 00:57:35 2023 +0300
+
+    version 1.03
+
+[33mcommit 921cac1446ceecf4a60e40ec56f5149ee691ace2[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Wed Aug 23 20:31:38 2023 +0300
+
+    version 1.2
+
+[33mcommit 28389407e455026f3b66b7d39200b07371eb4de3[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Wed Aug 23 15:59:00 2023 +0300
+
+    version 1.1
+
+[33mcommit bb652f9cb87a9a72164b8d5084fff0c7a78e2c50[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Wed Aug 23 14:44:03 2023 +0300
+
+    version 1.0
+
+[33mcommit 2bbb863b9042390ca9ac5921436b08c59ff1d3dd[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Wed Aug 23 12:12:43 2023 +0300
+
+    Complete Phase1
+
+[33mcommit 3294be7b8275c36b4f71341155cae0287a23a18e[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Wed Aug 23 11:39:23 2023 +0300
+
+    basic setup
+
+[33mcommit 221b10e6b4ef1308f497d52b72ce5fcb0efe5c78[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Wed Aug 23 10:15:41 2023 +0300
+
+    setup git
+
+[33mcommit 7fd73885987a2c74b180d12bdce91680e547d229[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Wed Aug 23 10:08:23 2023 +0300
+
+    test2
+
+[33mcommit cedb4d5f23230319b8f5c5320bfffc69e0614cd2[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Wed Aug 23 10:01:44 2023 +0300
+
+    test
+
+[33mcommit 657318d2f95cb9cc599ef87e4d76b39a7584ffd5[m
+Author: Daniel Avishid <danielavishid@gmail.com>
+Date:   Wed Aug 23 10:00:21 2023 +0300
+
+    my first commit
