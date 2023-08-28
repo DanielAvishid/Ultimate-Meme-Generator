@@ -1,3 +1,9 @@
 .editor-container {
     grid-template-columns: 1fr;
 }
+
+.editor-container .canvas-container {
+    background-color: var(--clrSecondary-1);
+    padding: 1em;
+    border: 1px solid black;
+}

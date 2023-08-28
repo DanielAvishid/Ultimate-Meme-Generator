@@ -28,11 +28,6 @@ canvas {
 
 }
 
-.main-canvas {
-    background-color: var(--clrSecondary-1);
-    padding: 2em;
-}
-
 input {
     font-size: 1.5625em;
 }
