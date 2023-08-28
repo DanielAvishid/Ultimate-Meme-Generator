@@ -80,9 +80,13 @@ select::-ms-expand {
 }
 
 .btn:hover {
-    animation: beat .6s alternate infinite;
     color: var(--clrSecondary);
     border-color: var(--clrSecondary);
+}
+
+.random-meme-btn:hover,
+.delete-saved-memes:hover {
+    animation: beat .6s alternate infinite;
 }
 
 @keyframes beat {
