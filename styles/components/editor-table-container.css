@@ -17,3 +17,22 @@
 .editor-table-container .options-container {
     background-color: var(--clrPrimary1);
 }
+
+.editor-table-container .options-container .btn {
+    line-height: 1.5625em;
+}
+
+.editor-table-container .options-container .download-btn {
+    color: black;
+    background-color: var(--clrSecondary-1);
+}
+
+.editor-table-container .options-container .share-btn {
+    color: black;
+    background-color: var(--clrSecondary-1);
+}
+
+.editor-table-container .options-container .save-btn {
+    color: black;
+    background-color: var(--clrSecondary-1);
+}
