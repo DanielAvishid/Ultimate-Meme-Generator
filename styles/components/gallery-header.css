@@ -5,7 +5,7 @@
 .gallery-header .filter-container input {
     font-size: 1.5625em;
     margin: auto;
-    width: 96%;
+    width: 100%;
 }
 
 ::-webkit-input-placeholder {
